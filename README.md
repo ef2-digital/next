@@ -12,5 +12,5 @@ The library `@ef2-digital/react` is (not yet!) online. For now execute the follo
 4. Run `yarn link`.
 
 Open the project you created in step 1.
-5. Run `yarn link "@ef2-digital/react"`
-6. Run `yarn dev`
+1. Run `yarn link "@ef2-digital/react"`
+2. Run `yarn dev`
