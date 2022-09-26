@@ -13,12 +13,12 @@ const Footer = () => {
                             <Logo className="col-span-4 mb-8 md:col-span-3 md:mb-0" />
                         </Link>
                         <div className="col-span-4 md:col-span-3 md:col-start-5">
-                            <p className="!mb-0 font-bold">Woonboulevard Veenendaal</p>
-                            <p className="md:!mb-0">Industrieterrein &#8217;Het Ambacht&#8217;</p>
+                            <p className="!mb-0 font-bold text-white/50">EF2</p>
+                            <p className="md:!mb-0 text-white/50">Ready to Renew</p>
                         </div>
                         <div className="col-span-4 md:col-span-3 md:col-start-8">
-                            <p className="!mb-0">Groeneveldselaan 21-57</p>
-                            <p className="md:!mb-0">3903 AX, Veenendaal</p>
+                            <p className="!mb-0 text-white/50">Vendelier 6b</p>
+                            <p className="md:!mb-0 text-white/50">3905 PA Veenendaal</p>
                         </div>
                     </Row>
                 </Container>

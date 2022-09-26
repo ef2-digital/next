@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-// import Image from 'next/image';
 import { useRouter } from 'next/router';
-// import Woonboulevard from 'public/woonboulevard-veenendaal.webp';
 import { forwardRef } from 'react';
+import Ef2 from '!@svgr/webpack!public/ef2.svg';
 
 interface LogoProps {
     className?: string;
@@ -19,7 +18,7 @@ const Logo = forwardRef<HTMLAnchorElement, LogoProps>(({ className, href }, ref)
             className={classNames('block w-[8.5rem]', className)}
             aria-current={router.pathname == '/' ? 'page' : undefined}
         >
-            {/* <Image src={Woonboulevard} alt="Logo Woonboulevard Veenendaal" layout="responsive" width={244} height={99} unoptimized /> */}
+            <Ef2 className="not-sr-only ml-3" viewBox="0 0 30 33" />
         </a>
     );
 });
