@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@ef2-digital/react';
 import classNames from 'classnames';
 import Footer from 'components/Footer';
 // import { ItemProps } from 'components/menu/Item';
@@ -5,14 +6,14 @@ import Footer from 'components/Footer';
 import { PropsWithChildren } from 'react';
 
 interface DefaultLayoutProps {
-    navigation: ItemProps[];
+    navigation: any[];
     hero?: boolean;
 }
 
 const DefaultLayout = ({ children, navigation, hero }: PropsWithChildren<DefaultLayoutProps>) => {
     // Render.
     return (
-        <>
+        <ThemeProvider>
             {/* <Navigation items={navigation} /> */}
             <main
                 id="main"
@@ -24,7 +25,7 @@ const DefaultLayout = ({ children, navigation, hero }: PropsWithChildren<Default
                 {children}
             </main>
             <Footer />
-        </>
+        </ThemeProvider>
     );
 };
 
