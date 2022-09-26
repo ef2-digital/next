@@ -1,20 +1,19 @@
 import { ThemeProvider } from '@ef2-digital/react';
 import Footer from 'components/Footer';
-// import { ItemProps } from 'components/menu/Item';
-// import Navigation from 'components/Navigation';
 import { PropsWithChildren } from 'react';
+import { ApolloProvider } from '@apollo/client';
+import client from 'graphql/client';
 
-interface DefaultLayoutProps {
-    navigation: any[];
-}
+interface DefaultLayoutProps {}
 
-const DefaultLayout = ({ children, navigation }: PropsWithChildren<DefaultLayoutProps>) => {
+const DefaultLayout = ({ children }: PropsWithChildren<DefaultLayoutProps>) => {
     // Render.
     return (
         <ThemeProvider>
-            {/* <Navigation items={navigation} /> */}
-            <main id="main">{children}</main>
-            <Footer />
+            <ApolloProvider client={client}>
+                <main id="main">{children}</main>
+                <Footer />
+            </ApolloProvider>
         </ThemeProvider>
     );
 };

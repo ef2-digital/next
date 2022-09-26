@@ -8,7 +8,7 @@ const Home: NextPageWithLayout = ({}) => {
         <>
             <Container>
                 <Row>
-                    <Button>123</Button>
+                    <Button>Button</Button>
                 </Row>
             </Container>
         </>
@@ -16,7 +16,7 @@ const Home: NextPageWithLayout = ({}) => {
 };
 
 Home.getLayout = (page: ReactElement) => {
-    return <DefaultLayout navigation={[]}>{page}</DefaultLayout>;
+    return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Home;
