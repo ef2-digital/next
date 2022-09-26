@@ -15,20 +15,29 @@ module.exports = {
             center: true,
             padding: '1rem'
         },
+        fontWeight: {
+            normal: 400,
+            bold: 700
+        },
+        fontFamily: {
+            bungee: ['Bungee', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif']
+        },
         colors: {
+            white: '#ffffff',
             transparent: 'transparent',
             primary: {
-                DEFAULT: '#063B7D',
-                50: '#0A64D5',
-                100: '#0A60CB',
-                200: '#0957B7',
-                300: '#084DA4',
-                400: '#074490',
-                500: '#063B7D',
-                600: '#05326A',
-                700: '#042956',
-                800: '#031F43',
-                900: '#02162F'
+                DEFAULT: '#FF7A00',
+                50: '#FFAA5C',
+                100: '#FFA552',
+                200: '#FF9A3D',
+                300: '#FF8F29',
+                400: '#FF8514',
+                500: '#FF7A00',
+                600: '#EB7000',
+                700: '#D66600',
+                800: '#C25D00',
+                900: '#AD5300'
             },
             secondary: {
                 DEFAULT: '#EB0037',

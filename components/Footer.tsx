@@ -25,7 +25,7 @@ const Footer = () => {
                     </Row>
                 </Container>
             </div>
-            <div className="bg-secondary">
+            <div className="bg-primary">
                 <Container>
                     <nav
                         role="navigation"
