@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Container, Row } from './grid';
+import { Container, Row } from '@ef2-digital/react';
 import Ef2 from '!@svgr/webpack!public/ef2.svg';
 import Logo from './Logo';
 
