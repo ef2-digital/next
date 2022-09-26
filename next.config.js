@@ -1,7 +1,13 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+    images: {
+        deviceSizes: Object.values(defaultTheme.screens).map((screen) => parseInt(screen))
+        // domains: ['content.woonboulevard-veenendaal.midge.ef2.builders']
+    },
+    reactStrictMode: true,
+    swcMinify: true
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

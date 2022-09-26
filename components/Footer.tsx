@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import { Container, Row } from './grid';
-// import Ef2 from '!@svgr/webpack!public/ef2.svg';
+import Ef2 from '!@svgr/webpack!public/ef2.svg';
 import Logo from './Logo';
-// import Social from './Social';
 
 const Footer = () => {
     return (
         <footer className="sticky top-[100vh]">
-            <div className="bg-radial-footer ">
+            <div className="bg-secondary">
                 <Container className="py-12 md:py-16">
                     <Row>
                         <Link href="/" passHref>
@@ -21,7 +20,6 @@ const Footer = () => {
                             <p className="!mb-0">Groeneveldselaan 21-57</p>
                             <p className="md:!mb-0">3903 AX, Veenendaal</p>
                         </div>
-                        {/* <Social /> */}
                     </Row>
                 </Container>
             </div>
@@ -48,7 +46,7 @@ const Footer = () => {
                                     rel="noreferrer"
                                 >
                                     Gebouwd door <span className="sr-only">EF2 (opent in een nieuw venster)</span>
-                                    {/* <Ef2 className="not-sr-only ml-3" viewBox="0 0 30 33" /> */}
+                                    <Ef2 className="not-sr-only ml-3" viewBox="0 0 30 33" />
                                 </a>
                             </li>
                         </ul>
