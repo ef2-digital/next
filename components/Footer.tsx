@@ -28,7 +28,7 @@ const Footer = () => {
                     <nav
                         role="navigation"
                         aria-label="Copyright"
-                        className="py-4 font-montserrat text-[0.875rem] font-normal leading-6 text-white "
+                        className="py-4 font-montserrat text-[0.875rem] font-normal leading-6 text-white"
                     >
                         <ul className="flex items-center justify-between">
                             <li className="inline-flex list-none">
@@ -46,7 +46,7 @@ const Footer = () => {
                                     rel="noreferrer"
                                 >
                                     Gebouwd door <span className="sr-only">EF2 (opent in een nieuw venster)</span>
-                                    <Ef2 className="not-sr-only ml-3" viewBox="0 0 30 33" />
+                                    <Ef2 className="fill-white not-sr-only ml-3" viewBox="0 0 30 33" />
                                 </a>
                             </li>
                         </ul>
