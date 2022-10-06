@@ -4,13 +4,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "DOTENV_CONFIG_PATH='./.env.generate' graphql-codegen -r dotenv/config --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@ef2-digital/react": "^1.0.1",
     "@headlessui/react": "^1.7.2",
     "classnames": "^2.3.2",
+    "graphql": "^16.6.0",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
