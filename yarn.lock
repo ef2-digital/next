@@ -1147,12 +1147,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@ef2-digital/react@^1.0.1":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@ef2-digital/react/1.0.6/1020580a07c11c2d40d1a7b02b3a9fe8f9a86667#1020580a07c11c2d40d1a7b02b3a9fe8f9a86667"
-  integrity sha512-lvw7BtDCcRFEvu15PgScQ6ikdQfPEtigsJeSNIk3ib1d05+BEOJelgcTVBNffCBUJAzjlJ6W+L/gy3axAQWGCQ==
-  dependencies:
-    tailwind-merge "^1.6.0"
+"@ef2-digital/react@1.0.10":
+  version "1.0.10"
+  resolved "https://npm.pkg.github.com/download/@ef2-digital/react/1.0.10/bd9b6714c56694684dbb8d0b073d3a729bc44a5c#bd9b6714c56694684dbb8d0b073d3a729bc44a5c"
+  integrity sha512-aCwsjjy3s0p2wj8pu3p5zlRW/FCsjnNG3CtB2iKKf2PEXRxv8O9cv/HGBR1c0Vz2xE4dfrrvNstGYJieyHGzkQ==
 
 "@eslint/eslintrc@^1.3.0":
   version "1.3.0"
@@ -5692,11 +5690,6 @@ symbol-observable@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-4.0.0.tgz#5b425f192279e87f2f9b937ac8540d1984b39205"
   integrity sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==
-
-tailwind-merge@^1.6.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.6.1.tgz#36bd3a63f59860354432a0a7b7ebd04a14141035"
-  integrity sha512-wC/tta/BxpmE/4Qc7WX0OK+ajhetgpJZ+IfQMpUBOv4nWjlxQKbq/FBkcZDX7fVGq2RJBnWa3WzsPz5mUe+g7g==
 
 tailwindcss@^3.1.8:
   version "3.1.8"
