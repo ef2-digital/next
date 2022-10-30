@@ -1,21 +1,25 @@
-import { Container } from '@ef2-digital/react';
 import { Disclosure } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
+import { Container } from '@ef2-digital/react';
 import Logo from './Logo';
-import Toggle from './Toggle';
+import { Menu, MenuMobile, Toggle } from './menu';
+import { ItemProps } from './menu/Item';
 
-interface NavigationProps {}
+interface NavigationProps {
+    items: ItemProps[];
+}
 
 interface HeaderProps extends NavigationProps {
     open: boolean;
     close: () => void;
 }
 
-const Header = ({ open, close }: HeaderProps) => {
+const Header = ({ items, open, close }: HeaderProps) => {
     const router = useRouter();
     const toggleRef = useRef<HTMLButtonElement>(null);
+    const lastItemRef = useRef<HTMLAnchorElement>(null);
     const firstItemRef = useRef<HTMLAnchorElement>(null);
 
     useEffect(() => {
@@ -31,12 +35,21 @@ const Header = ({ open, close }: HeaderProps) => {
                     <Container>
                         <div className="flex items-center justify-between">
                             <Link href="/" passHref>
-                                <Logo className="!fill-primary" ref={firstItemRef} />
+                                <Logo ref={firstItemRef} />
                             </Link>
+                            <Menu items={items} />
                             <Toggle ref={toggleRef} open={open} />
                         </div>
                     </Container>
                 </div>
+                <MenuMobile
+                    closeRef={toggleRef}
+                    firstItemRef={firstItemRef}
+                    lastItemRef={lastItemRef}
+                    items={items}
+                    open={open}
+                    close={close}
+                />
             </nav>
         </header>
     );

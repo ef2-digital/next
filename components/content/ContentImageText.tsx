@@ -37,7 +37,7 @@ const ContentImageText = ({ className, odd, title, subtitle, description, href, 
                     )}
                 </div>
                 <div
-                    className={classNames('order-1 col-span-4 mb-8 h-auto w-full md:col-span-5 md:mb-0', {
+                    className={classNames('rounded overflow-hidden flex order-1 col-span-4 mb-8 h-auto w-full md:col-span-5 md:mb-0', {
                         'md:order-2 md:col-start-8': odd,
                         'md:order-1': !odd
                     })}

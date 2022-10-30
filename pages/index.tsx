@@ -7,6 +7,7 @@ import { SINGLE_TYPE_HOMEPAGE } from 'graphql/singleTypes/homepage';
 import client from 'graphql/client';
 import { StrapiContent } from 'components/strapi';
 import { notNull } from 'utils/graphql';
+import { ItemProps } from 'components/menu/Item';
 
 const Home: NextPageWithLayout<SingleTypeHomepageQuery> = ({ homepage }) => {
     const data = homepage!.data!.attributes!;
@@ -36,13 +37,15 @@ export const getStaticProps: GetStaticProps<SingleTypeHomepageQuery> = async () 
         };
     } catch (error) {
         return {
-            notFound: true,
+            notFound: true
         };
     }
 };
 
-Home.getLayout = (page: ReactElement) => {
-    return <DefaultLayout>{page}</DefaultLayout>;
+Home.getLayout = (page: ReactElement, pageProps: SingleTypeHomepageQuery) => {
+    const navigation: ItemProps[] = pageProps.navigation.filter(notNull).map((item) => ({ href: item.path!, children: item.title }));
+
+    return <DefaultLayout navigation={navigation}>{page}</DefaultLayout>;
 };
 
 export default Home;

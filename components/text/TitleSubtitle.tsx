@@ -1,48 +1,33 @@
 import classNames from 'classnames';
 import { Maybe } from 'graphql/types';
-import { useInView } from 'react-intersection-observer';
-import Skew from './Skew';
+import { ElementType } from 'react';
 
 export interface TitleSubtitleProps {
     title?: Maybe<string>;
     subtitle?: Maybe<string>;
+    titleAs?: ElementType;
+    subtitleAs?: ElementType;
+    titleClassName?: string;
+    subtitleClassName?: string;
     className?: string;
-    important?: boolean;
     center?: boolean;
 }
 
-const TitleSubtitle = ({ title, subtitle, className, center, important }: TitleSubtitleProps) => {
-    const { ref, inView } = useInView({
-        triggerOnce: true
-    });
-
+const TitleSubtitle = ({
+    titleAs: Title = 'h3',
+    subtitleAs: Subtitle = 'h4',
+    title,
+    subtitle,
+    className,
+    center,
+    titleClassName,
+    subtitleClassName
+}: TitleSubtitleProps) => {
     // Render.
-    const Tag = important ? 'h2' : 'h4';
-
     return (
-        <div ref={ref} className={classNames('flex flex-col', className)}>
-            {title && (
-                <Skew
-                    inView={inView}
-                    as={important ? 'h1' : 'h3'}
-                    parentClassName="order-2 mb-6"
-                    className={classNames({ 'text-center': center })}
-                >
-                    {title}
-                </Skew>
-            )}
-            {subtitle && (
-                <Tag
-                    className={classNames('order-1 mb-4 text-secondary transition-all duration-500', {
-                        'translate-y-6 opacity-0': !inView,
-                        'translate-y-0 opacity-100': inView,
-                        'text-center': center,
-                        h4: important
-                    })}
-                >
-                    {subtitle}
-                </Tag>
-            )}
+        <div className={classNames('flex flex-col', className)}>
+            {title && <Title className={classNames('order-2', { 'text-center': center }, titleClassName)}>{title}</Title>}
+            {subtitle && <Subtitle className={classNames('order-1', { 'text-center': center }, subtitleClassName)}>{subtitle}</Subtitle>}
         </div>
     );
 };

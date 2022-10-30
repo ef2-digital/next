@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import { Maybe } from 'graphql/types';
 import { FunctionComponent } from 'react';
+import StrapiContentAccordion, { StrapiContentAccordionProps } from './StrapiContentAccordion';
 import StrapiContentImageTexts, { StrapiContentImageTextsProps } from './StrapiContentImageTexts';
 
 const componentMap = new Map<string, FunctionComponent<any>>([
-    ['ComponentContentImageTexts', (props: StrapiContentImageTextsProps) => <StrapiContentImageTexts {...props} />]
+    ['ComponentContentImageTexts', (props: StrapiContentImageTextsProps) => <StrapiContentImageTexts {...props} />],
+    ['ComponentContentAccordion', (props: StrapiContentAccordionProps) => <StrapiContentAccordion {...props} />]
 ]);
 
 interface StrapiContentProps<T> {

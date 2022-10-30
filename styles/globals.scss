@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        @apply h-full font-montserrat;
+        @apply h-full font-inter;
     }
 
     body {
@@ -28,7 +28,7 @@
     .h4,
     p,
     .p {
-        @apply text-primary;
+        @apply text-text;
     }
 
     h1,
@@ -37,7 +37,7 @@
     .h2,
     h3,
     .h3 {
-        @apply mb-6 font-bungee md:mb-8;
+        @apply text-dark mb-6 md:mb-8;
     }
 
     h1,
@@ -52,16 +52,16 @@
 
     h3,
     .h3 {
-        @apply text-xl md:text-2xl;
+        @apply text-dark font-bold text-xl md:text-2xl;
     }
 
     h4,
     .h4 {
-        @apply font-montserrat text-base font-bold md:text-lg;
+        @apply text-primary mb-2 text-base font-bold md:text-lg;
     }
 
     p,
     .p {
-        @apply mb-6 text-sm md:mb-8 md:text-base;
+        @apply text-text mb-6 text-sm md:mb-8 md:text-base;
     }
 }

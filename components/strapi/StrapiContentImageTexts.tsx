@@ -25,7 +25,7 @@ const StrapiContentImageTexts = ({ direction, images, className }: StrapiContent
                 image: item.image.data?.attributes ? (
                     <StrapiUploadFile
                         width={900}
-                        height={800}
+                        height={600}
                         layout="intrinsic"
                         objectFit="cover"
                         objectPosition="center"
