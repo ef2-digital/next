@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { Container } from '@ef2-digital/react';
+import { Container } from '@ef2/react';
 import Logo from './Logo';
 import { Menu, MenuMobile, Toggle } from './menu';
 import { ItemProps } from './menu/Item';

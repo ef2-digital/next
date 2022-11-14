@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Container } from '@ef2-digital/react';
+import { Container } from '@ef2/react';
 import { Enum_Componentcontentimagetexts_Direction, Maybe } from 'graphql/types';
 import ContentImageText, { ContentImageTextProps } from './ContentImageText';
 

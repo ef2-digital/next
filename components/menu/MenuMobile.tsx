@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import classNames from 'classnames';
-import { Container } from '@ef2-digital/react';
+import { Container } from '@ef2/react';
 import Item, { ItemProps } from './Item';
 import { RefObject, useCallback, useEffect } from 'react';
 import { Skew } from 'components/text';

@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from '@ef2-digital/react';
+import { ThemeProvider } from '@ef2/react';
 import Footer from 'components/Footer';
 import Navigation from 'components/Navigation';
 import { PropsWithChildren } from 'react';
@@ -14,7 +14,7 @@ interface DefaultLayoutProps {
 const DefaultLayout = ({ children, navigation }: PropsWithChildren<DefaultLayoutProps>) => {
     return (
         <ApolloProvider client={client}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme} lng="nl">
                 <Navigation items={navigation} />
                 <main id="main">{children}</main>
                 <Footer />

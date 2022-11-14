@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Icon } from '@ef2-digital/react';
+import { Icon } from '@ef2/react';
 import { PropsWithChildren } from 'react';
 import { Disclosure } from '@headlessui/react';
 

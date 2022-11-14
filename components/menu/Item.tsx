@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { forwardRef, PropsWithChildren } from 'react';
-import { Button } from '@ef2-digital/react';
+import { Button } from '@ef2/react';
 import { Maybe } from 'graphql/types';
 import classNames from 'classnames';
 

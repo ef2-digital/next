@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import type { ButtonProps } from '@ef2-digital/react';
-import { Row, Button } from '@ef2-digital/react';
+import type { ButtonProps } from '@ef2/react';
+import { Row, Button } from '@ef2/react';
 import { TitleSubtitle } from 'components/text';
 import { Maybe } from 'graphql/types';
 import Link from 'next/link';

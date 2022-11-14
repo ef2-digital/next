@@ -1,4 +1,4 @@
-import { PartialTheme } from '@ef2-digital/react';
+import { PartialTheme } from '@ef2/react';
 
 const theme: PartialTheme = {
     button: {
