@@ -2,9 +2,10 @@
 module.exports = {
     content: [
         './theme.ts',
+        './app/**/*.{js,ts,jsx,tsx}',
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
-        './node_modules/@ef2-digital/react/lib/**/*.js'
+        './node_modules/@ef2/react/lib/**/*.js'
     ],
     theme: {
         fontSize: {
