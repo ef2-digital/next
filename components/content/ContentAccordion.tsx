@@ -1,5 +1,5 @@
-import { Container } from '@ef2-digital/react';
-import { Row } from '@ef2-digital/react';
+import { Container } from '@ef2/react';
+import { Row } from '@ef2/react';
 import { PropsWithChildren } from 'react';
 
 export interface ContentAccordionProps {
