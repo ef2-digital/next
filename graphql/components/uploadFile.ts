@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 
 export const COMPONENT_UPLOAD_FILE = gql`
     fragment ComponentUploadFile on UploadFile {

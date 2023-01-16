@@ -1,3 +1,4 @@
+const path = require('path');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('next').NextConfig} */
@@ -8,7 +9,13 @@ const nextConfig = {
         // domains: ['content.woonboulevard-veenendaal.midge.ef2.builders']
     },
     reactStrictMode: true,
-    swcMinify: true
+    swcMinify: true,
+    experimental: {
+        appDir: true
+    },
+    sassOptions: {
+        includePaths: [path.join(__dirname, 'styles')]
+    }
 };
 
 module.exports = nextConfig;

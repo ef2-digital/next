@@ -1,44 +1,41 @@
+'use client';
+
 import { Disclosure } from '@headlessui/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { Container } from '@ef2/react';
 import Logo from './Logo';
 import { Menu, MenuMobile, Toggle } from './menu';
-import { ItemProps } from './menu/Item';
+import { NavigationItem } from 'utils/graphql';
+import { usePathname } from 'next/navigation';
 
-interface NavigationProps {
-    items: ItemProps[];
+interface HeaderWrapperProps {
+    navigation: NavigationItem[];
 }
 
-interface HeaderProps extends NavigationProps {
+interface HeaderProps extends HeaderWrapperProps {
     open: boolean;
     close: () => void;
 }
 
-const Header = ({ items, open, close }: HeaderProps) => {
-    const router = useRouter();
+const Header = ({ navigation, open, close }: HeaderProps) => {
+    const pathname = usePathname();
     const toggleRef = useRef<HTMLButtonElement>(null);
     const lastItemRef = useRef<HTMLAnchorElement>(null);
     const firstItemRef = useRef<HTMLAnchorElement>(null);
 
     useEffect(() => {
-        // Close menu when changing route.
-        router.events.on('routeChangeStart', close);
-        return () => router.events.off('routeChangeStart', close);
-    }, [close, router.events]);
+        close();
+    }, [close, pathname]);
 
     return (
-        <header>
-            <nav aria-label="hoofdmenu" role="navigation">
-                <div className="fixed top-0 z-[100] flex h-[5rem] w-full items-center bg-white shadow-sm md:h-[6rem]">
+        <header className="sticky top-0 z-50">
+            <nav aria-label="primary navigation">
+                <div className="w-full bg-white shadow-sm relative z-20">
                     <Container>
-                        <div className="flex items-center justify-between">
-                            <Link href="/" passHref>
-                                <Logo ref={firstItemRef} />
-                            </Link>
-                            <Menu items={items} />
+                        <div className="flex items-center justify-between h-[5rem]">
                             <Toggle ref={toggleRef} open={open} />
+                            <Logo ref={firstItemRef} />
+                            <Menu items={navigation} />
                         </div>
                     </Container>
                 </div>
@@ -46,7 +43,7 @@ const Header = ({ items, open, close }: HeaderProps) => {
                     closeRef={toggleRef}
                     firstItemRef={firstItemRef}
                     lastItemRef={lastItemRef}
-                    items={items}
+                    items={navigation}
                     open={open}
                     close={close}
                 />
@@ -55,7 +52,7 @@ const Header = ({ items, open, close }: HeaderProps) => {
     );
 };
 
-const Navigation = (props: NavigationProps) => {
+const HeaderWrapper = (props: HeaderWrapperProps) => {
     // Render.
     return (
         <>
@@ -67,4 +64,4 @@ const Navigation = (props: NavigationProps) => {
     );
 };
 
-export default Navigation;
+export default HeaderWrapper;

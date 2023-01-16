@@ -1,28 +1,32 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import { COMPONENT_CONTENT_ACCORDION } from 'graphql/components/contentAccordion';
 import { COMPONENT_CONTENT_IMAGE_TEXTS } from 'graphql/components/contentImageTexts';
-import { COMPONENT_NAVIGATION } from 'graphql/components/navigation';
 
-export const COLLECTION_PAGE = gql`
-    ${COMPONENT_CONTENT_IMAGE_TEXTS}
+export const COLLECTION_PAGE_RESPONSE = gql`
     ${COMPONENT_CONTENT_ACCORDION}
-    ${COMPONENT_NAVIGATION}
+    ${COMPONENT_CONTENT_IMAGE_TEXTS}
 
-    query CollectionPage($slug: String!) {
-        ...ComponentNavigation
-        findSlug(modelName: "page", slug: $slug) {
-            ... on PageEntityResponse {
-                data {
-                    id
-                    attributes {
-                        content {
-                            __typename
-                            ...ComponentContentImageTexts
-                            ...ComponentContentAccordion
-                        }
-                    }
+    fragment CollectionPageResponse on PageEntityResponse {
+        data {
+            id
+            attributes {
+                content {
+                    __typename
+                    ...ComponentContentAccordion
+                    ...ComponentContentImageTexts
                 }
             }
+        }
+    }
+`;
+
+export const COLLECTION_PAGE = gql`
+    ${COLLECTION_PAGE_RESPONSE}
+    ${COMPONENT_CONTENT_ACCORDION}
+
+    query CollectionPage($slug: String!) {
+        findSlug(modelName: "page", slug: $slug) {
+            ...CollectionPageResponse
         }
     }
 `;

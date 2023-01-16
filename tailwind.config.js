@@ -5,26 +5,13 @@ module.exports = {
         './app/**/*.{js,ts,jsx,tsx}',
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
-        './node_modules/@ef2/react/lib/**/*.js'
+        './node_modules/@ef2/react/lib/**/*.{js,ts,jsx,tsx}'
     ],
     theme: {
-        fontSize: {
-            sm: ['.9375rem', 1.5],
-            base: ['1rem', 1.5],
-            lg: ['1.125rem', 1.5],
-            xl: ['1.25rem', 1],
-            '2xl': ['1.625rem', 1],
-            '3xl': ['2rem', 1],
-            '4xl': ['3rem', 1]
-        },
         container: {
             center: true,
             padding: '1rem'
         },
-        // fontWeight: {
-        //     normal: 400,
-        //     bold: 700
-        // },
         fontFamily: {
             inter: ['Inter', 'sans-serif']
         },
@@ -32,17 +19,17 @@ module.exports = {
             colors: {
                 // use tailwindshades.com with the settings, step up/set down: 4. hue shift: 0.
                 primary: {
-                    DEFAULT: '#FF7A00',
-                    50: '#FFAA5C',
-                    100: '#FFA552',
-                    200: '#FF9A3D',
-                    300: '#FF8F29',
-                    400: '#FF8514',
-                    500: '#FF7A00',
-                    600: '#EB7000',
-                    700: '#D66600',
-                    800: '#C25D00',
-                    900: '#AD5300'
+                    DEFAULT: '#3B82F6',
+                    50: '#EBF2FE',
+                    100: '#D7E6FD',
+                    200: '#B0CDFB',
+                    300: '#89B4FA',
+                    400: '#629BF8',
+                    500: '#3B82F6',
+                    600: '#0B61EE',
+                    700: '#084BB8',
+                    800: '#063583',
+                    900: '#041F4D'
                 },
                 secondary: {
                     DEFAULT: '#00212D',

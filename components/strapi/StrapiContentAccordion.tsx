@@ -10,7 +10,7 @@ const StrapiContentAccordion = ({ className, items }: StrapiContentAccordionProp
     return (
         <ContentAccordion className={className}>
             {items.filter(notNull).map((item) => (
-                <ContentAccordionItem title="rsersf" html={item.text} />
+                <ContentAccordionItem title={item.title} html={item.text} />
             ))}
         </ContentAccordion>
     );

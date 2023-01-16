@@ -10,7 +10,9 @@ const ContentAccordion = ({ className, children }: PropsWithChildren<ContentAcco
     return (
         <Container className={className}>
             <Row>
-                <ul className="col-span-8 col-start-3 divide-y divide-gray-200">{children}</ul>
+                <ul role="list" className="col-span-4 md:col-span-12 lg:col-span-8 lg:col-start-3 divide-y divide-gray-200">
+                    {children}
+                </ul>
             </Row>
         </Container>
     );
