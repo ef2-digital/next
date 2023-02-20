@@ -1,6 +1,6 @@
 'use client';
 
-import { StrapiContent } from 'components/strapi';
+import { StrapiContentFlex, StrapiContentFlexComponents } from 'components/strapi';
 import { SingleTypeHomepageQuery } from 'graphql/types';
 import { notFound } from 'next/navigation';
 import { notNull } from 'utils/graphql';
@@ -9,8 +9,8 @@ interface HomePageProps {
     data: SingleTypeHomepageQuery;
 }
 
-const HomePage = ({ data: { homepage } }: HomePageProps) => {
-    const data = homepage?.data?.attributes;
+const HomePage = ({ data: { contentHomepage } }: HomePageProps) => {
+    const data = contentHomepage?.data?.attributes;
 
     if (!data) {
         return notFound();
@@ -18,9 +18,7 @@ const HomePage = ({ data: { homepage } }: HomePageProps) => {
 
     return (
         <>
-            {data.content?.filter(notNull).map((zone, index) => (
-                <StrapiContent key={index} data={zone} typename={zone.__typename} />
-            ))}
+            <StrapiContentFlexComponents components={data.flexContent} />
         </>
     );
 };

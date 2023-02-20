@@ -1,6 +1,8 @@
+import { HeadingProps, NavigationItem } from '@ef2/content-components-react';
 import { print, DocumentNode } from 'graphql';
 import { NAVIGATION } from 'graphql/components/navigation';
-import { Maybe, NavigationQuery, Page } from 'graphql/types';
+import { ComponentContentHeadingFragment, Maybe, NavigationItemFragment, NavigationQuery } from 'graphql/types';
+import { ElementType } from 'react';
 
 export const notNull = <T extends object>(value: T | null | undefined): value is T => {
     return value !== null && value !== undefined;
@@ -18,42 +20,49 @@ export const fetchGraphql = async <T extends object>(query: DocumentNode | strin
     return (await response.json()).data;
 };
 
-export interface NavigationItem {
-    id: number | string;
-    title: string;
-    path: string;
-    external: boolean;
-    bold?: boolean;
-    [key: string]: any;
-}
+export const getHeadingProps = (heading: ComponentContentHeadingFragment): HeadingProps => {
+    return {
+        titleHtml: heading.title,
+        titleAs: heading.titleTag as ElementType | null,
+        subtitle: heading.subtitle,
+        subtitleAs: heading.subtitleTag as ElementType | null
+    };
+};
 
 const getNavigationItemPath = (
     path?: Maybe<string>,
     related?: Maybe<{
         __typename?: 'NavigationItemRelatedData';
-        attributes?: Maybe<{ __typename?: 'Homepage' } | { __typename?: 'Page'; slug?: string }>;
+        attributes?: Maybe<{ __typename?: string; slug?: Maybe<string> }>;
     }>
 ) => {
-    if (related?.attributes?.__typename === 'Page') {
-        return (related.attributes as Page).slug;
-    }
+    // if (related?.attributes?.__typename === 'Page') {
+    //     return (related.attributes as Page).slug;
+    // }
+
+    // if (related?.attributes?.__typename === 'ArticlesPage') {
+    //     return 'blog';
+    // }
 
     return path;
 };
 
 export const getNavigationItems = (navigation: Pick<NavigationQuery, 'navigation'>): NavigationItem[] => {
-    return navigation.navigation.filter(notNull).map((item) => {
-        const external = !!item.externalPath;
-        const path = getNavigationItemPath(item.path, item.related) || item.externalPath || '/';
+    return navigation.navigation.filter(notNull).map((item) => getNavigationItem(item));
+};
 
-        return {
-            id: item.id,
-            title: item.title,
-            path: path.startsWith('/') || external ? path : `/${path}`,
-            bold: !!item.bold,
-            external
-        };
-    });
+export const getNavigationItem = (item: NavigationItemFragment & { items?: (NavigationItemFragment | null)[] | null }): NavigationItem => {
+    const external = item.type === 'EXTERNAL';
+    const path = getNavigationItemPath(item.path, item.related) || item.externalPath || '/';
+
+    return {
+        id: item.id,
+        title: item.title,
+        path: item.items && item.items.length > 0 ? undefined : path.startsWith('/') || external ? path : `/${path}`,
+        items: item.items?.filter(notNull).map((item) => getNavigationItem(item)),
+        // bold: !!item.bold,
+        external
+    };
 };
 
 export const fetchGraphqlNavigation = async (id: string): Promise<NavigationItem[]> => {

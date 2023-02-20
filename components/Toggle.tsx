@@ -12,7 +12,7 @@ const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(({ open, className }, 
         <Disclosure.Button
             ref={ref}
             className={classNames(
-                'relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded bg-secondary hover:bg-secondary-700 hover:shadow-md focus:border-secondary-700 focus:bg-secondary focus:shadow-md focus:outline-dashed focus:outline-1 focus:outline-offset-4 focus:outline-secondary',
+                'relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded bg-secondary hover:bg-secondary-700 hover:shadow-md focus:border-secondary-700 focus:bg-secondary focus:shadow-md focus:outline-dashed focus:outline-1 focus:outline-offset-4 focus:outline-secondary md:hidden',
                 className
             )}
         >

@@ -2,11 +2,11 @@ import gql from 'graphql-tag';
 import { COMPONENT_CONTENT_BUTTON } from './contentButton';
 import { COMPONENT_CONTENT_HEADING } from './contentHeading';
 
-export const COMPONENT_CONTENT_TEXT = gql`
+export const COMPONENT_CONTENT_TEASER = gql`
     ${COMPONENT_CONTENT_HEADING}
     ${COMPONENT_CONTENT_BUTTON}
 
-    fragment ComponentContentText on ComponentContentText {
+    fragment ComponentContentTeaser on ComponentContentTeaser {
         id
         heading {
             ...ComponentContentHeading
@@ -15,6 +15,5 @@ export const COMPONENT_CONTENT_TEXT = gql`
         button {
             ...ComponentContentButton
         }
-        background
     }
 `;

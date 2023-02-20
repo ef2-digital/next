@@ -1,24 +1,24 @@
-import { Container, Row } from '@ef2/react';
-import Prose from 'components/Prose';
-import { BoldTitle } from 'components/text';
 import { ComponentContentTextFragment } from 'graphql/types';
+import { Text, TextProps } from '@ef2/content-components-react';
+import { ElementType } from 'react';
 import StrapiButton from './StrapiButton';
 
-export interface StrapiContentTextProps extends ComponentContentTextFragment {
-    className?: string;
+export interface StrapiContentTextProps {
+    text?: TextProps;
+    fragment: ComponentContentTextFragment;
 }
 
-const StrapiContentText = ({ className, text, title, button }: StrapiContentTextProps) => {
+const StrapiContentText = ({ text, fragment }: StrapiContentTextProps) => {
     return (
-        <Container className={className}>
-            <Row>
-                <div className="col-span-4 md:col-span-12 lg:col-span-8 lg:col-start-3">
-                    <BoldTitle html={title} />
-                    <Prose html={text} />
-                    {button && <StrapiButton {...button} />}
-                </div>
-            </Row>
-        </Container>
+        <Text
+            {...text}
+            html={fragment.text}
+            titleHtml={fragment.heading.title}
+            titleAs={fragment.heading.titleTag as ElementType}
+            subtitle={fragment.heading.subtitle}
+            subtitleAs={fragment.heading.subtitleTag as ElementType}
+            button={fragment.button ? <StrapiButton {...fragment.button} className="mt-8" /> : undefined}
+        />
     );
 };
 

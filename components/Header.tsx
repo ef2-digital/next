@@ -1,67 +1,49 @@
 'use client';
 
-import { Disclosure } from '@headlessui/react';
-import { useEffect, useRef } from 'react';
-import { Container } from '@ef2/react';
 import Logo from './Logo';
-import { Menu, MenuMobile, Toggle } from './menu';
-import { NavigationItem } from 'utils/graphql';
-import { usePathname } from 'next/navigation';
+import Toggle from './Toggle';
+import { Disclosure } from '@headlessui/react';
+import { Header as HeaderComponent, HeaderProps as HeaderComponentProps } from '@ef2/content-components-react';
+import { classNamesTailwind } from 'utils/theme';
+import { ScrollHeader } from '@ef2/react';
+import { NavigationLink } from './navigation';
 
-interface HeaderWrapperProps {
-    navigation: NavigationItem[];
-}
+interface HeaderProps extends Pick<HeaderComponentProps, 'navigation'> {}
 
-interface HeaderProps extends HeaderWrapperProps {
-    open: boolean;
-    close: () => void;
-}
-
-const Header = ({ navigation, open, close }: HeaderProps) => {
-    const pathname = usePathname();
-    const toggleRef = useRef<HTMLButtonElement>(null);
-    const lastItemRef = useRef<HTMLAnchorElement>(null);
-    const firstItemRef = useRef<HTMLAnchorElement>(null);
-
-    useEffect(() => {
-        close();
-    }, [close, pathname]);
+const Header = ({ navigation }: HeaderProps) => {
+    console.log({ navigation });
 
     return (
-        <header className="sticky top-0 z-50">
-            <nav aria-label="primary navigation">
-                <div className="w-full bg-white shadow-sm relative z-20">
-                    <Container>
-                        <div className="flex items-center justify-between h-[5rem]">
-                            <Toggle ref={toggleRef} open={open} />
-                            <Logo ref={firstItemRef} />
-                            <Menu items={navigation} />
-                        </div>
-                    </Container>
-                </div>
-                <MenuMobile
-                    closeRef={toggleRef}
-                    firstItemRef={firstItemRef}
-                    lastItemRef={lastItemRef}
-                    items={navigation}
-                    open={open}
-                    close={close}
-                />
-            </nav>
-        </header>
+        <Disclosure>
+            {({ open, close }) => (
+                <ScrollHeader>
+                    {({ top }) => {
+                        return (
+                            <HeaderComponent
+                                open={open}
+                                close={close}
+                                renderLogo={(ref) => <Logo ref={ref} />}
+                                navigation={navigation}
+                                renderToggle={({ ref, open }) => <Toggle ref={ref} open={open} />}
+                                renderMenuItem={({ ref, item }) => <NavigationLink {...item} ref={ref} />}
+                                renderMobileMenuWrapper={(children) => (
+                                    <Disclosure.Panel
+                                        static
+                                        className={classNamesTailwind(
+                                            'md:hidden bg-white fixed right-0 top-0 z-10 w-full flex flex-col transition-[width] duration-500 ease-in-out motion-reduce:transition-none overflow-hidden h-screen',
+                                            { 'w-screen': open, 'w-0': !open }
+                                        )}
+                                    >
+                                        {children}
+                                    </Disclosure.Panel>
+                                )}
+                            />
+                        );
+                    }}
+                </ScrollHeader>
+            )}
+        </Disclosure>
     );
 };
 
-const HeaderWrapper = (props: HeaderWrapperProps) => {
-    // Render.
-    return (
-        <>
-            <a className="p sr-only !mb-0 px-4 !leading-10 hover:underline focus:not-sr-only" href="#main">
-                Overslaan en naar de inhoud gaan
-            </a>
-            <Disclosure>{({ open, close }) => <Header open={open} close={close} {...props} />}</Disclosure>
-        </>
-    );
-};
-
-export default HeaderWrapper;
+export default Header;

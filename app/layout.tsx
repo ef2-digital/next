@@ -3,11 +3,12 @@ import { PropsWithChildren } from 'react';
 import { Inter } from '@next/font/google';
 import { fetchGraphql, fetchGraphqlNavigation } from 'utils/graphql';
 import classNames from 'classnames';
-import Footer from 'components/Footer';
+// import Footer from 'components/Footer';
 import ClientLayout from './ClientLayout';
-import { SingleTypeGeneralQuery } from 'graphql/types';
-import { SINGLE_TYPE_GENERAL } from 'graphql/singleTypes/general';
 import Header from 'components/Header';
+// import { SingleTypeGeneralQuery } from 'graphql/types';
+// import { SINGLE_TYPE_GENERAL } from 'graphql/singleTypes/general';
+// import Header from 'components/Header';
 
 const inter = Inter({
     // Only the design weights.
@@ -17,9 +18,9 @@ const inter = Inter({
     subsets: ['latin']
 });
 
-const getFooterData = async (): Promise<SingleTypeGeneralQuery> => {
-    return await fetchGraphql<SingleTypeGeneralQuery>(SINGLE_TYPE_GENERAL);
-};
+// const getFooterData = async (): Promise<SingleTypeGeneralQuery> => {
+//     return await fetchGraphql<SingleTypeGeneralQuery>(SINGLE_TYPE_GENERAL);
+// };
 
 const Layout = async ({ children }: PropsWithChildren) => {
     return (
@@ -31,7 +32,7 @@ const Layout = async ({ children }: PropsWithChildren) => {
                 <ClientLayout>
                     <Header navigation={await fetchGraphqlNavigation('main-navigation')} />
                     <main id="main">{children}</main>
-                    <Footer data={await getFooterData()} />
+                    {/* <Footer data={await getFooterData()} /> */}
                 </ClientLayout>
             </body>
         </html>

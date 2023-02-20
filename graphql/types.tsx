@@ -1,11 +1,8 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,11 +10,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  ContentHomepageFlexContentDynamicZoneInput: any;
   DateTime: any;
-  HomepageContentDynamicZoneInput: any;
   I18NLocaleCode: any;
   JSON: any;
-  PageContentDynamicZoneInput: any;
   Upload: any;
 };
 
@@ -45,93 +41,145 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ComponentContentAccordion = {
-  __typename?: 'ComponentContentAccordion';
+export type ComponentContentButton = {
+  __typename?: 'ComponentContentButton';
+  color: Enum_Componentcontentbutton_Color;
+  href: Scalars['String'];
   id: Scalars['ID'];
-  items: Array<Maybe<ComponentContentAccordionItem>>;
+  label: Scalars['String'];
+  target: Enum_Componentcontentbutton_Target;
+  variant: Enum_Componentcontentbutton_Variant;
 };
 
-
-export type ComponentContentAccordionItemsArgs = {
-  filters?: InputMaybe<ComponentContentAccordionItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+export type ComponentContentButtonFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentContentButtonFiltersInput>>>;
+  color?: InputMaybe<StringFilterInput>;
+  href?: InputMaybe<StringFilterInput>;
+  label?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentContentButtonFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentContentButtonFiltersInput>>>;
+  target?: InputMaybe<StringFilterInput>;
+  variant?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentContentAccordionItem = {
-  __typename?: 'ComponentContentAccordionItem';
+export type ComponentContentHeading = {
+  __typename?: 'ComponentContentHeading';
   id: Scalars['ID'];
-  text: Scalars['String'];
+  subtitle?: Maybe<Scalars['String']>;
+  subtitleTag?: Maybe<Enum_Componentcontentheading_Subtitletag>;
   title: Scalars['String'];
+  titleTag: Enum_Componentcontentheading_Titletag;
 };
 
-export type ComponentContentAccordionItemFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentContentAccordionItemFiltersInput>>>;
-  not?: InputMaybe<ComponentContentAccordionItemFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentContentAccordionItemFiltersInput>>>;
-  text?: InputMaybe<StringFilterInput>;
+export type ComponentContentHeadingFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentContentHeadingFiltersInput>>>;
+  not?: InputMaybe<ComponentContentHeadingFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentContentHeadingFiltersInput>>>;
+  subtitle?: InputMaybe<StringFilterInput>;
+  subtitleTag?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
-};
-
-export type ComponentContentImage = {
-  __typename?: 'ComponentContentImage';
-  id: Scalars['ID'];
-  image: UploadFileEntityResponse;
+  titleTag?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentContentImageText = {
   __typename?: 'ComponentContentImageText';
-  buttonTarget?: Maybe<Enum_Componentcontentimagetext_Buttontarget>;
-  buttonText?: Maybe<Scalars['String']>;
-  description: Scalars['String'];
-  href?: Maybe<Scalars['String']>;
+  background: Scalars['Boolean'];
+  button: ComponentContentButton;
+  heading: ComponentContentHeading;
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
-  subtitle: Scalars['String'];
-  title: Scalars['String'];
+  text: Scalars['String'];
 };
 
-export type ComponentContentImageTextFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
-  buttonTarget?: InputMaybe<StringFilterInput>;
-  buttonText?: InputMaybe<StringFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
-  href?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<ComponentContentImageTextFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
-  subtitle?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-};
-
-export type ComponentContentImageTexts = {
-  __typename?: 'ComponentContentImageTexts';
-  direction?: Maybe<Enum_Componentcontentimagetexts_Direction>;
+export type ComponentContentImageTextCollectio = {
+  __typename?: 'ComponentContentImageTextCollectio';
+  direction: Enum_Componentcontentimagetextcollectio_Direction;
   id: Scalars['ID'];
   images: Array<Maybe<ComponentContentImageText>>;
 };
 
 
-export type ComponentContentImageTextsImagesArgs = {
+export type ComponentContentImageTextCollectioImagesArgs = {
   filters?: InputMaybe<ComponentContentImageTextFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type ComponentContentText = {
-  __typename?: 'ComponentContentText';
-  button?: Maybe<ComponentInputButton>;
-  id: Scalars['ID'];
-  text: Scalars['String'];
-  title: Scalars['String'];
+export type ComponentContentImageTextFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
+  background?: InputMaybe<BooleanFilterInput>;
+  button?: InputMaybe<ComponentContentButtonFiltersInput>;
+  heading?: InputMaybe<ComponentContentHeadingFiltersInput>;
+  not?: InputMaybe<ComponentContentImageTextFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
+  text?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentInputButton = {
-  __typename?: 'ComponentInputButton';
-  href: Scalars['String'];
+export type ComponentContentTeaser = {
+  __typename?: 'ComponentContentTeaser';
+  button?: Maybe<ComponentContentButton>;
+  heading: ComponentContentHeading;
   id: Scalars['ID'];
-  target?: Maybe<Enum_Componentinputbutton_Target>;
+  image: UploadFileEntityResponse;
   text: Scalars['String'];
-  type: Enum_Componentinputbutton_Type;
+};
+
+export type ComponentContentTeaserCollection = {
+  __typename?: 'ComponentContentTeaserCollection';
+  heading: ComponentContentHeading;
+  id: Scalars['ID'];
+  teasers: Array<Maybe<ComponentContentTeaser>>;
+};
+
+
+export type ComponentContentTeaserCollectionTeasersArgs = {
+  filters?: InputMaybe<ComponentContentTeaserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentContentTeaserFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentContentTeaserFiltersInput>>>;
+  button?: InputMaybe<ComponentContentButtonFiltersInput>;
+  heading?: InputMaybe<ComponentContentHeadingFiltersInput>;
+  not?: InputMaybe<ComponentContentTeaserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentContentTeaserFiltersInput>>>;
+  text?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentContentText = {
+  __typename?: 'ComponentContentText';
+  background: Scalars['Boolean'];
+  button: ComponentContentButton;
+  heading: ComponentContentHeading;
+  id: Scalars['ID'];
+  text: Scalars['String'];
+};
+
+export type ContentHomepage = {
+  __typename?: 'ContentHomepage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  flexContent?: Maybe<Array<Maybe<ContentHomepageFlexContentDynamicZone>>>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ContentHomepageEntity = {
+  __typename?: 'ContentHomepageEntity';
+  attributes?: Maybe<ContentHomepage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ContentHomepageEntityResponse = {
+  __typename?: 'ContentHomepageEntityResponse';
+  data?: Maybe<ContentHomepageEntity>;
+};
+
+export type ContentHomepageFlexContentDynamicZone = ComponentContentTeaserCollection | ComponentContentText | Error;
+
+export type ContentHomepageInput = {
+  flexContent?: InputMaybe<Array<Scalars['ContentHomepageFlexContentDynamicZoneInput']>>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type DateTimeFilterInput = {
@@ -158,24 +206,43 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
-export enum Enum_Componentcontentimagetexts_Direction {
+export enum Enum_Componentcontentbutton_Color {
+  Primary = 'primary',
+  Secondary = 'secondary'
+}
+
+export enum Enum_Componentcontentbutton_Target {
+  Blank = 'blank',
+  Self = 'self'
+}
+
+export enum Enum_Componentcontentbutton_Variant {
+  Default = 'default',
+  Outline = 'outline',
+  Text = 'text'
+}
+
+export enum Enum_Componentcontentheading_Subtitletag {
+  H1 = 'h1',
+  H2 = 'h2',
+  H3 = 'h3',
+  H4 = 'h4',
+  H5 = 'h5',
+  Paragraph = 'paragraph'
+}
+
+export enum Enum_Componentcontentheading_Titletag {
+  H1 = 'h1',
+  H2 = 'h2',
+  H3 = 'h3',
+  H4 = 'h4',
+  H5 = 'h5',
+  Paragraph = 'paragraph'
+}
+
+export enum Enum_Componentcontentimagetextcollectio_Direction {
   Even = 'even',
   Odd = 'odd'
-}
-
-export enum Enum_Componentcontentimagetext_Buttontarget {
-  Blank = 'blank',
-  Self = 'self'
-}
-
-export enum Enum_Componentinputbutton_Target {
-  Blank = 'blank',
-  Self = 'self'
-}
-
-export enum Enum_Componentinputbutton_Type {
-  Default = 'default',
-  Secondary = 'secondary'
 }
 
 export type Error = {
@@ -189,9 +256,6 @@ export type FileInfoInput = {
   caption?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
-
-/** Union Type of all registered slug content types */
-export type FindSlugResponse = PageEntityResponse;
 
 export type FloatFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -217,57 +281,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type General = {
-  __typename?: 'General';
-  address: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  title: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type GeneralEntity = {
-  __typename?: 'GeneralEntity';
-  attributes?: Maybe<General>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type GeneralEntityResponse = {
-  __typename?: 'GeneralEntityResponse';
-  data?: Maybe<GeneralEntity>;
-};
-
-export type GeneralInput = {
-  address?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type GenericMorph = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentImageTexts | ComponentContentText | ComponentInputButton | General | Homepage | I18NLocale | Page | SlugifySlug | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
-
-export type Homepage = {
-  __typename?: 'Homepage';
-  content?: Maybe<Array<Maybe<HomepageContentDynamicZone>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  title: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type HomepageContentDynamicZone = ComponentContentAccordion | ComponentContentImage | ComponentContentImageTexts | ComponentContentText | Error;
-
-export type HomepageEntity = {
-  __typename?: 'HomepageEntity';
-  attributes?: Maybe<Homepage>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type HomepageEntityResponse = {
-  __typename?: 'HomepageEntityResponse';
-  data?: Maybe<HomepageEntity>;
-};
-
-export type HomepageInput = {
-  content?: InputMaybe<Array<Scalars['HomepageContentDynamicZoneInput']>>;
-  title?: InputMaybe<Scalars['String']>;
-};
+export type GenericMorph = ComponentContentButton | ComponentContentHeading | ComponentContentImageText | ComponentContentImageTextCollectio | ComponentContentTeaser | ComponentContentTeaserCollection | ComponentContentText | ContentHomepage | I18NLocale | SlugifySlug | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -381,7 +395,6 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createPage?: Maybe<PageEntityResponse>;
   createSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -389,9 +402,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteGeneral?: Maybe<GeneralEntityResponse>;
-  deleteHomepage?: Maybe<HomepageEntityResponse>;
-  deletePage?: Maybe<PageEntityResponse>;
+  deleteContentHomepage?: Maybe<ContentHomepageEntityResponse>;
   deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -410,10 +421,8 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateContentHomepage?: Maybe<ContentHomepageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updateGeneral?: Maybe<GeneralEntityResponse>;
-  updateHomepage?: Maybe<HomepageEntityResponse>;
-  updatePage?: Maybe<PageEntityResponse>;
   updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -429,11 +438,6 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
-};
-
-
-export type MutationCreatePageArgs = {
-  data: PageInput;
 };
 
 
@@ -459,11 +463,6 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
-};
-
-
-export type MutationDeletePageArgs = {
-  id: Scalars['ID'];
 };
 
 
@@ -532,25 +531,14 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateContentHomepageArgs = {
+  data: ContentHomepageInput;
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
-};
-
-
-export type MutationUpdateGeneralArgs = {
-  data: GeneralInput;
-};
-
-
-export type MutationUpdateHomepageArgs = {
-  data: HomepageInput;
-};
-
-
-export type MutationUpdatePageArgs = {
-  data: PageInput;
-  id: Scalars['ID'];
 };
 
 
@@ -594,7 +582,6 @@ export type MutationUploadArgs = {
 
 export type NavigationItem = {
   __typename?: 'NavigationItem';
-  bold?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['String']>;
   createdBy?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['String']>;
@@ -617,7 +604,7 @@ export type NavigationItem = {
   updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationItemRelated = Homepage | Page;
+export type NavigationItemRelated = ContentHomepage;
 
 export type NavigationItemRelatedData = {
   __typename?: 'NavigationItemRelatedData';
@@ -630,54 +617,6 @@ export enum NavigationRenderType {
   Rfr = 'RFR',
   Tree = 'TREE'
 }
-
-export type Page = {
-  __typename?: 'Page';
-  content?: Maybe<Array<Maybe<PageContentDynamicZone>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  slug: Scalars['String'];
-  title: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type PageContentDynamicZone = ComponentContentAccordion | ComponentContentImageTexts | Error;
-
-export type PageEntity = {
-  __typename?: 'PageEntity';
-  attributes?: Maybe<Page>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type PageEntityResponse = {
-  __typename?: 'PageEntityResponse';
-  data?: Maybe<PageEntity>;
-};
-
-export type PageEntityResponseCollection = {
-  __typename?: 'PageEntityResponseCollection';
-  data: Array<PageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type PageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<PageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  slug?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type PageInput = {
-  content?: InputMaybe<Array<Scalars['PageContentDynamicZoneInput']>>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  slug?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
 
 export type Pagination = {
   __typename?: 'Pagination';
@@ -694,21 +633,12 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
-export enum PublicationState {
-  Live = 'LIVE',
-  Preview = 'PREVIEW'
-}
-
 export type Query = {
   __typename?: 'Query';
-  findSlug?: Maybe<FindSlugResponse>;
-  general?: Maybe<GeneralEntityResponse>;
-  homepage?: Maybe<HomepageEntityResponse>;
+  contentHomepage?: Maybe<ContentHomepageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  page?: Maybe<PageEntityResponse>;
-  pages?: Maybe<PageEntityResponseCollection>;
   renderNavigation: Array<Maybe<NavigationItem>>;
   renderNavigationChild: Array<Maybe<NavigationItem>>;
   slugifySlug?: Maybe<SlugifySlugEntityResponse>;
@@ -724,13 +654,6 @@ export type Query = {
 };
 
 
-export type QueryFindSlugArgs = {
-  modelName?: InputMaybe<Scalars['String']>;
-  publicationState?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -739,19 +662,6 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type QueryPageArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QueryPagesArgs = {
-  filters?: InputMaybe<PageFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
@@ -1275,346 +1185,28 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type CollectionPageResponseFragment = { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', content?: Array<{ __typename: 'ComponentContentAccordion', items: Array<{ __typename?: 'ComponentContentAccordionItem', title: string, text: string } | null> } | { __typename: 'ComponentContentImageTexts', direction?: Enum_Componentcontentimagetexts_Direction | null, images: Array<{ __typename?: 'ComponentContentImageText', id: string, title: string, subtitle: string, description: string, href?: string | null, buttonText?: string | null, buttonTarget?: Enum_Componentcontentimagetext_Buttontarget | null, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | { __typename: 'Error' } | null> | null } | null } | null };
+export type ComponentContentButtonFragment = { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target };
 
-export type CollectionPageQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
+export type ComponentContentHeadingFragment = { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null };
 
+export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } };
 
-export type CollectionPageQuery = { findSlug?: { __typename?: 'PageEntityResponse', data?: { __typename?: 'PageEntity', id?: string | null, attributes?: { __typename?: 'Page', content?: Array<{ __typename: 'ComponentContentAccordion', items: Array<{ __typename?: 'ComponentContentAccordionItem', title: string, text: string } | null> } | { __typename: 'ComponentContentImageTexts', direction?: Enum_Componentcontentimagetexts_Direction | null, images: Array<{ __typename?: 'ComponentContentImageText', id: string, title: string, subtitle: string, description: string, href?: string | null, buttonText?: string | null, buttonTarget?: Enum_Componentcontentimagetext_Buttontarget | null, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | { __typename: 'Error' } | null> | null } | null } | null } | null };
+export type ComponentContentTeaserFragment = { __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null };
 
-export type CollectionPagePathsQueryVariables = Exact<{ [key: string]: never; }>;
+export type ComponentContentTeaserCollectionFragment = { __typename?: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null } | null> };
 
+export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } };
 
-export type CollectionPagePathsQuery = { pages?: { __typename?: 'PageEntityResponseCollection', data: Array<{ __typename?: 'PageEntity', attributes?: { __typename?: 'Page', slug: string } | null }> } | null };
-
-export type ComponentContentAccordionFragment = { __typename?: 'ComponentContentAccordion', items: Array<{ __typename?: 'ComponentContentAccordionItem', title: string, text: string } | null> };
-
-export type ComponentContentAccordionItemFragment = { __typename?: 'ComponentContentAccordionItem', title: string, text: string };
-
-export type ComponentContentImageFragment = { __typename?: 'ComponentContentImage', image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } };
-
-export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, title: string, subtitle: string, description: string, href?: string | null, buttonText?: string | null, buttonTarget?: Enum_Componentcontentimagetext_Buttontarget | null, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } };
-
-export type ComponentContentImageTextsFragment = { __typename?: 'ComponentContentImageTexts', direction?: Enum_Componentcontentimagetexts_Direction | null, images: Array<{ __typename?: 'ComponentContentImageText', id: string, title: string, subtitle: string, description: string, href?: string | null, buttonText?: string | null, buttonTarget?: Enum_Componentcontentimagetext_Buttontarget | null, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> };
-
-export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', title: string, text: string, button?: { __typename?: 'ComponentInputButton', id: string, text: string, href: string, type: Enum_Componentinputbutton_Type, target?: Enum_Componentinputbutton_Target | null } | null };
-
-export type ComponentInputButtonFragment = { __typename?: 'ComponentInputButton', id: string, text: string, href: string, type: Enum_Componentinputbutton_Type, target?: Enum_Componentinputbutton_Target | null };
+export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null };
 
 export type NavigationQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, externalPath?: string | null, bold?: boolean | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'Homepage' } | { __typename: 'Page', slug: string } | null } | null } | null> };
-
-export type ComponentUploadFileFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string };
-
-export type SingleTypeGeneralQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SingleTypeGeneralQuery = { general?: { __typename?: 'GeneralEntityResponse', data?: { __typename?: 'GeneralEntity', id?: string | null, attributes?: { __typename?: 'General', address: string } | null } | null } | null };
+export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null } | null> };
 
 export type SingleTypeHomepageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SingleTypeHomepageQuery = { homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', id?: string | null, attributes?: { __typename?: 'Homepage', content?: Array<{ __typename: 'ComponentContentAccordion', items: Array<{ __typename?: 'ComponentContentAccordionItem', title: string, text: string } | null> } | { __typename: 'ComponentContentImage', image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | { __typename: 'ComponentContentImageTexts', direction?: Enum_Componentcontentimagetexts_Direction | null, images: Array<{ __typename?: 'ComponentContentImageText', id: string, title: string, subtitle: string, description: string, href?: string | null, buttonText?: string | null, buttonTarget?: Enum_Componentcontentimagetext_Buttontarget | null, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string } | null } | null } } | null> } | { __typename: 'ComponentContentText', title: string, text: string, button?: { __typename?: 'ComponentInputButton', id: string, text: string, href: string, type: Enum_Componentinputbutton_Type, target?: Enum_Componentinputbutton_Target | null } | null } | { __typename: 'Error' } | null> | null } | null } | null } | null };
-
-export const ComponentContentAccordionItemFragmentDoc = gql`
-    fragment ComponentContentAccordionItem on ComponentContentAccordionItem {
-  title
-  text
-}
-    `;
-export const ComponentContentAccordionFragmentDoc = gql`
-    fragment ComponentContentAccordion on ComponentContentAccordion {
-  items {
-    ...ComponentContentAccordionItem
-  }
-}
-    ${ComponentContentAccordionItemFragmentDoc}`;
-export const ComponentUploadFileFragmentDoc = gql`
-    fragment ComponentUploadFile on UploadFile {
-  alternativeText
-  url
-}
-    `;
-export const ComponentContentImageTextFragmentDoc = gql`
-    fragment ComponentContentImageText on ComponentContentImageText {
-  id
-  title
-  subtitle
-  description
-  href
-  buttonText
-  buttonTarget
-  image {
-    data {
-      attributes {
-        ...ComponentUploadFile
-      }
-    }
-  }
-}
-    ${ComponentUploadFileFragmentDoc}`;
-export const ComponentContentImageTextsFragmentDoc = gql`
-    fragment ComponentContentImageTexts on ComponentContentImageTexts {
-  images {
-    ...ComponentContentImageText
-  }
-  direction
-}
-    ${ComponentContentImageTextFragmentDoc}`;
-export const CollectionPageResponseFragmentDoc = gql`
-    fragment CollectionPageResponse on PageEntityResponse {
-  data {
-    id
-    attributes {
-      content {
-        __typename
-        ...ComponentContentAccordion
-        ...ComponentContentImageTexts
-      }
-    }
-  }
-}
-    ${ComponentContentAccordionFragmentDoc}
-${ComponentContentImageTextsFragmentDoc}`;
-export const ComponentContentImageFragmentDoc = gql`
-    fragment ComponentContentImage on ComponentContentImage {
-  image {
-    data {
-      attributes {
-        ...ComponentUploadFile
-      }
-    }
-  }
-}
-    ${ComponentUploadFileFragmentDoc}`;
-export const ComponentInputButtonFragmentDoc = gql`
-    fragment ComponentInputButton on ComponentInputButton {
-  id
-  text
-  href
-  type
-  target
-}
-    `;
-export const ComponentContentTextFragmentDoc = gql`
-    fragment ComponentContentText on ComponentContentText {
-  title
-  text
-  button {
-    ...ComponentInputButton
-  }
-}
-    ${ComponentInputButtonFragmentDoc}`;
-export const CollectionPageDocument = gql`
-    query CollectionPage($slug: String!) {
-  findSlug(modelName: "page", slug: $slug) {
-    ...CollectionPageResponse
-  }
-}
-    ${CollectionPageResponseFragmentDoc}`;
-
-/**
- * __useCollectionPageQuery__
- *
- * To run a query within a React component, call `useCollectionPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionPageQuery({
- *   variables: {
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useCollectionPageQuery(baseOptions: Apollo.QueryHookOptions<CollectionPageQuery, CollectionPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionPageQuery, CollectionPageQueryVariables>(CollectionPageDocument, options);
-      }
-export function useCollectionPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionPageQuery, CollectionPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionPageQuery, CollectionPageQueryVariables>(CollectionPageDocument, options);
-        }
-export type CollectionPageQueryHookResult = ReturnType<typeof useCollectionPageQuery>;
-export type CollectionPageLazyQueryHookResult = ReturnType<typeof useCollectionPageLazyQuery>;
-export type CollectionPageQueryResult = Apollo.QueryResult<CollectionPageQuery, CollectionPageQueryVariables>;
-export const CollectionPagePathsDocument = gql`
-    query CollectionPagePaths {
-  pages {
-    data {
-      attributes {
-        slug
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useCollectionPagePathsQuery__
- *
- * To run a query within a React component, call `useCollectionPagePathsQuery` and pass it any options that fit your needs.
- * When your component renders, `useCollectionPagePathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCollectionPagePathsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useCollectionPagePathsQuery(baseOptions?: Apollo.QueryHookOptions<CollectionPagePathsQuery, CollectionPagePathsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CollectionPagePathsQuery, CollectionPagePathsQueryVariables>(CollectionPagePathsDocument, options);
-      }
-export function useCollectionPagePathsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionPagePathsQuery, CollectionPagePathsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CollectionPagePathsQuery, CollectionPagePathsQueryVariables>(CollectionPagePathsDocument, options);
-        }
-export type CollectionPagePathsQueryHookResult = ReturnType<typeof useCollectionPagePathsQuery>;
-export type CollectionPagePathsLazyQueryHookResult = ReturnType<typeof useCollectionPagePathsLazyQuery>;
-export type CollectionPagePathsQueryResult = Apollo.QueryResult<CollectionPagePathsQuery, CollectionPagePathsQueryVariables>;
-export const NavigationDocument = gql`
-    query Navigation($id: String!) {
-  navigation: renderNavigation(navigationIdOrSlug: $id, menuOnly: true) {
-    id
-    title
-    path
-    externalPath
-    bold
-    related {
-      attributes {
-        __typename
-        ... on Page {
-          slug
-        }
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useNavigationQuery__
- *
- * To run a query within a React component, call `useNavigationQuery` and pass it any options that fit your needs.
- * When your component renders, `useNavigationQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useNavigationQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useNavigationQuery(baseOptions: Apollo.QueryHookOptions<NavigationQuery, NavigationQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NavigationQuery, NavigationQueryVariables>(NavigationDocument, options);
-      }
-export function useNavigationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NavigationQuery, NavigationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NavigationQuery, NavigationQueryVariables>(NavigationDocument, options);
-        }
-export type NavigationQueryHookResult = ReturnType<typeof useNavigationQuery>;
-export type NavigationLazyQueryHookResult = ReturnType<typeof useNavigationLazyQuery>;
-export type NavigationQueryResult = Apollo.QueryResult<NavigationQuery, NavigationQueryVariables>;
-export const SingleTypeGeneralDocument = gql`
-    query SingleTypeGeneral {
-  general {
-    data {
-      id
-      attributes {
-        address
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useSingleTypeGeneralQuery__
- *
- * To run a query within a React component, call `useSingleTypeGeneralQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleTypeGeneralQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleTypeGeneralQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSingleTypeGeneralQuery(baseOptions?: Apollo.QueryHookOptions<SingleTypeGeneralQuery, SingleTypeGeneralQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SingleTypeGeneralQuery, SingleTypeGeneralQueryVariables>(SingleTypeGeneralDocument, options);
-      }
-export function useSingleTypeGeneralLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SingleTypeGeneralQuery, SingleTypeGeneralQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SingleTypeGeneralQuery, SingleTypeGeneralQueryVariables>(SingleTypeGeneralDocument, options);
-        }
-export type SingleTypeGeneralQueryHookResult = ReturnType<typeof useSingleTypeGeneralQuery>;
-export type SingleTypeGeneralLazyQueryHookResult = ReturnType<typeof useSingleTypeGeneralLazyQuery>;
-export type SingleTypeGeneralQueryResult = Apollo.QueryResult<SingleTypeGeneralQuery, SingleTypeGeneralQueryVariables>;
-export const SingleTypeHomepageDocument = gql`
-    query SingleTypeHomepage {
-  homepage {
-    data {
-      id
-      attributes {
-        content {
-          __typename
-          ...ComponentContentImageTexts
-          ...ComponentContentAccordion
-          ...ComponentContentText
-          ...ComponentContentImage
-        }
-      }
-    }
-  }
-}
-    ${ComponentContentImageTextsFragmentDoc}
-${ComponentContentAccordionFragmentDoc}
-${ComponentContentTextFragmentDoc}
-${ComponentContentImageFragmentDoc}`;
-
-/**
- * __useSingleTypeHomepageQuery__
- *
- * To run a query within a React component, call `useSingleTypeHomepageQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleTypeHomepageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleTypeHomepageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSingleTypeHomepageQuery(baseOptions?: Apollo.QueryHookOptions<SingleTypeHomepageQuery, SingleTypeHomepageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SingleTypeHomepageQuery, SingleTypeHomepageQueryVariables>(SingleTypeHomepageDocument, options);
-      }
-export function useSingleTypeHomepageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SingleTypeHomepageQuery, SingleTypeHomepageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SingleTypeHomepageQuery, SingleTypeHomepageQueryVariables>(SingleTypeHomepageDocument, options);
-        }
-export type SingleTypeHomepageQueryHookResult = ReturnType<typeof useSingleTypeHomepageQuery>;
-export type SingleTypeHomepageLazyQueryHookResult = ReturnType<typeof useSingleTypeHomepageLazyQuery>;
-export type SingleTypeHomepageQueryResult = Apollo.QueryResult<SingleTypeHomepageQuery, SingleTypeHomepageQueryVariables>;
+export type SingleTypeHomepageQuery = { contentHomepage?: { __typename?: 'ContentHomepageEntityResponse', data?: { __typename?: 'ContentHomepageEntity', id?: string | null, attributes?: { __typename?: 'ContentHomepage', flexContent?: Array<{ __typename: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null } | null> } | { __typename: 'ComponentContentText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } } | { __typename: 'Error' } | null> | null } | null } | null } | null };

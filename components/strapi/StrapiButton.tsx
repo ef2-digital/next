@@ -1,23 +1,39 @@
 import { Button, ButtonProps } from '@ef2/react';
-import { ComponentInputButtonFragment, Enum_Componentinputbutton_Target, Enum_Componentinputbutton_Type } from 'graphql/types';
+import {
+    ComponentContentButtonFragment,
+    Enum_Componentcontentbutton_Target,
+    Enum_Componentcontentbutton_Color,
+    Enum_Componentcontentbutton_Variant
+} from 'graphql/types';
 import Link from 'next/link';
 
-interface StrapiButtonProps extends ComponentInputButtonFragment {
+interface StrapiButtonProps extends ComponentContentButtonFragment {
     className?: string;
 }
 
-const colorMap = new Map<Enum_Componentinputbutton_Type, string>([
-    [Enum_Componentinputbutton_Type.Default, 'primary'],
-    [Enum_Componentinputbutton_Type.Secondary, 'secondary']
+const colorMap = new Map<Enum_Componentcontentbutton_Color, string>([
+    [Enum_Componentcontentbutton_Color.Primary, 'primary'],
+    [Enum_Componentcontentbutton_Color.Secondary, 'secondary']
 ]);
 
-export const getButtonProps = (component: ComponentInputButtonFragment): ButtonProps & { href: string } => {
+const variantMap = new Map<Enum_Componentcontentbutton_Variant, string>([
+    [Enum_Componentcontentbutton_Variant.Outline, 'outline'],
+    [Enum_Componentcontentbutton_Variant.Text, 'text']
+]);
+
+const targetMap = new Map<Enum_Componentcontentbutton_Target, string>([
+    [Enum_Componentcontentbutton_Target.Blank, '_blank'],
+    [Enum_Componentcontentbutton_Target.Self, '_self']
+]);
+
+export const getButtonProps = (component: ComponentContentButtonFragment): ButtonProps & { href: string } => {
     return {
         as: 'a',
-        children: component.text,
+        children: component.label,
         href: component.href,
-        target: component.target === Enum_Componentinputbutton_Target.Blank ? '_blank' : '_self',
-        color: colorMap.get(component.type) ?? undefined
+        target: targetMap.get(component.target),
+        variant: variantMap.get(component.variant),
+        color: colorMap.get(component.color)
     };
 };
 
