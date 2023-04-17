@@ -8,12 +8,20 @@ export const COMPONENT_CONTENT_IMAGE_TEXT = gql`
 
     fragment ComponentContentImageText on ComponentContentImageText {
         id
+        image {
+            data {
+                id
+                attributes {
+                    ...ComponentUploadFile
+                }
+            }
+        }
         heading {
             ...ComponentContentHeading
         }
         text
         button {
-            ...ComponentContentButton
+            ...ComponentInputButton
         }
         background
     }

@@ -19,8 +19,8 @@ export const NAVIGATION_ITEM = gql`
 export const NAVIGATION = gql`
     ${NAVIGATION_ITEM}
 
-    query Navigation($id: String!) {
-        navigation: renderNavigation(navigationIdOrSlug: $id, menuOnly: false, type: TREE) {
+    query Navigation($id: String!, $locale: I18NLocaleCode!) {
+        navigation: renderNavigation(navigationIdOrSlug: $id, menuOnly: false, type: TREE, locale: $locale) {
             ...NavigationItem
             items {
                 ...NavigationItem

@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { HeadingProps, NavigationItem } from '@ef2/content-components-react';
 import { print, DocumentNode } from 'graphql';
 import { NAVIGATION } from 'graphql/components/navigation';
@@ -8,17 +9,17 @@ export const notNull = <T extends object>(value: T | null | undefined): value is
     return value !== null && value !== undefined;
 };
 
-export const fetchGraphql = async <T extends object>(query: DocumentNode | string, variables?: object): Promise<T> => {
+export const fetchGraphql = cache(async <T extends object>(query: DocumentNode | string, variables?: object): Promise<T> => {
     const body = typeof query === 'string' ? JSON.stringify({ query, variables }) : JSON.stringify({ query: print(query), variables });
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql?revalidate=${Date.now()}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body
     });
 
     return (await response.json()).data;
-};
+});
 
 export const getHeadingProps = (heading: ComponentContentHeadingFragment): HeadingProps => {
     return {
@@ -65,7 +66,7 @@ export const getNavigationItem = (item: NavigationItemFragment & { items?: (Navi
     };
 };
 
-export const fetchGraphqlNavigation = async (id: string): Promise<NavigationItem[]> => {
-    const navigation = await fetchGraphql<NavigationQuery>(NAVIGATION, { id });
+export const fetchGraphqlNavigation = async (id: string, locale: string): Promise<NavigationItem[]> => {
+    const navigation = await fetchGraphql<NavigationQuery>(NAVIGATION, { id, locale });
     return navigation ? getNavigationItems(navigation) : [];
 };

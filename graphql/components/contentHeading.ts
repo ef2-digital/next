@@ -5,7 +5,5 @@ export const COMPONENT_CONTENT_HEADING = gql`
         id
         title
         titleTag
-        subtitle
-        subtitleTag
     }
 `;

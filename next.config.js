@@ -1,12 +1,12 @@
 const path = require('path');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const withNextIntl = require('next-intl/plugin')('./i18n.ts');
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withNextIntl({
     images: {
         deviceSizes: Object.values(defaultTheme.screens).map((screen) => parseInt(screen)),
         domains: ['localhost']
-        // domains: ['content.woonboulevard-veenendaal.midge.ef2.builders']
     },
     reactStrictMode: true,
     swcMinify: true,
@@ -16,6 +16,6 @@ const nextConfig = {
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')]
     }
-};
+});
 
 module.exports = nextConfig;

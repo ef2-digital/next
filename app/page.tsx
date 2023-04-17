@@ -7,6 +7,6 @@ const getData = async (): Promise<SingleTypeHomepageQuery> => {
     return await fetchGraphql<SingleTypeHomepageQuery>(SINGLE_TYPE_HOMEPAGE);
 };
 
-export default async function Page() {
-    return <HomePage data={await getData()} />;
+export default async function Page({ params: { locale }}: {params: { locale: string }}) {
+    return <HomePage data={await fetchGraphql<SingleTypeHomepageQuery>(SINGLE_TYPE_HOMEPAGE, {locale})} />;
 }

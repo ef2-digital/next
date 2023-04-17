@@ -10,7 +10,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  ContentHomepageFlexContentDynamicZoneInput: any;
   DateTime: any;
   I18NLocaleCode: any;
   JSON: any;
@@ -41,32 +40,9 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ComponentContentButton = {
-  __typename?: 'ComponentContentButton';
-  color: Enum_Componentcontentbutton_Color;
-  href: Scalars['String'];
-  id: Scalars['ID'];
-  label: Scalars['String'];
-  target: Enum_Componentcontentbutton_Target;
-  variant: Enum_Componentcontentbutton_Variant;
-};
-
-export type ComponentContentButtonFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentContentButtonFiltersInput>>>;
-  color?: InputMaybe<StringFilterInput>;
-  href?: InputMaybe<StringFilterInput>;
-  label?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<ComponentContentButtonFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentContentButtonFiltersInput>>>;
-  target?: InputMaybe<StringFilterInput>;
-  variant?: InputMaybe<StringFilterInput>;
-};
-
 export type ComponentContentHeading = {
   __typename?: 'ComponentContentHeading';
   id: Scalars['ID'];
-  subtitle?: Maybe<Scalars['String']>;
-  subtitleTag?: Maybe<Enum_Componentcontentheading_Subtitletag>;
   title: Scalars['String'];
   titleTag: Enum_Componentcontentheading_Titletag;
 };
@@ -75,8 +51,6 @@ export type ComponentContentHeadingFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentContentHeadingFiltersInput>>>;
   not?: InputMaybe<ComponentContentHeadingFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentContentHeadingFiltersInput>>>;
-  subtitle?: InputMaybe<StringFilterInput>;
-  subtitleTag?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   titleTag?: InputMaybe<StringFilterInput>;
 };
@@ -84,22 +58,22 @@ export type ComponentContentHeadingFiltersInput = {
 export type ComponentContentImageText = {
   __typename?: 'ComponentContentImageText';
   background: Scalars['Boolean'];
-  button: ComponentContentButton;
+  button: ComponentInputButton;
   heading: ComponentContentHeading;
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
   text: Scalars['String'];
 };
 
-export type ComponentContentImageTextCollectio = {
-  __typename?: 'ComponentContentImageTextCollectio';
-  direction: Enum_Componentcontentimagetextcollectio_Direction;
+export type ComponentContentImageTextCollection = {
+  __typename?: 'ComponentContentImageTextCollection';
+  direction: Enum_Componentcontentimagetextcollection_Direction;
   id: Scalars['ID'];
   images: Array<Maybe<ComponentContentImageText>>;
 };
 
 
-export type ComponentContentImageTextCollectioImagesArgs = {
+export type ComponentContentImageTextCollectionImagesArgs = {
   filters?: InputMaybe<ComponentContentImageTextFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -108,7 +82,7 @@ export type ComponentContentImageTextCollectioImagesArgs = {
 export type ComponentContentImageTextFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
   background?: InputMaybe<BooleanFilterInput>;
-  button?: InputMaybe<ComponentContentButtonFiltersInput>;
+  button?: InputMaybe<ComponentInputButtonFiltersInput>;
   heading?: InputMaybe<ComponentContentHeadingFiltersInput>;
   not?: InputMaybe<ComponentContentImageTextFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentContentImageTextFiltersInput>>>;
@@ -117,7 +91,7 @@ export type ComponentContentImageTextFiltersInput = {
 
 export type ComponentContentTeaser = {
   __typename?: 'ComponentContentTeaser';
-  button?: Maybe<ComponentContentButton>;
+  button?: Maybe<ComponentInputButton>;
   heading: ComponentContentHeading;
   id: Scalars['ID'];
   image: UploadFileEntityResponse;
@@ -140,7 +114,7 @@ export type ComponentContentTeaserCollectionTeasersArgs = {
 
 export type ComponentContentTeaserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentContentTeaserFiltersInput>>>;
-  button?: InputMaybe<ComponentContentButtonFiltersInput>;
+  button?: InputMaybe<ComponentInputButtonFiltersInput>;
   heading?: InputMaybe<ComponentContentHeadingFiltersInput>;
   not?: InputMaybe<ComponentContentTeaserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentContentTeaserFiltersInput>>>;
@@ -150,36 +124,221 @@ export type ComponentContentTeaserFiltersInput = {
 export type ComponentContentText = {
   __typename?: 'ComponentContentText';
   background: Scalars['Boolean'];
-  button: ComponentContentButton;
-  heading: ComponentContentHeading;
+  button: ComponentInputButton;
+  heading?: Maybe<ComponentContentHeading>;
   id: Scalars['ID'];
   text: Scalars['String'];
 };
 
-export type ContentHomepage = {
-  __typename?: 'ContentHomepage';
+export type ComponentGeneralSocialMedia = {
+  __typename?: 'ComponentGeneralSocialMedia';
+  channel?: Maybe<Enum_Componentgeneralsocialmedia_Channel>;
+  id: Scalars['ID'];
+  url: Scalars['String'];
+};
+
+export type ComponentGeneralSocialMediaFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralSocialMediaFiltersInput>>>;
+  channel?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentGeneralSocialMediaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralSocialMediaFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentGeneralSocialMediaInput = {
+  channel?: InputMaybe<Enum_Componentgeneralsocialmedia_Channel>;
+  id?: InputMaybe<Scalars['ID']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentInputButton = {
+  __typename?: 'ComponentInputButton';
+  color: Enum_Componentinputbutton_Color;
+  href: Scalars['String'];
+  id: Scalars['ID'];
+  label: Scalars['String'];
+  target: Enum_Componentinputbutton_Target;
+  variant: Enum_Componentinputbutton_Variant;
+};
+
+export type ComponentInputButtonFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentInputButtonFiltersInput>>>;
+  color?: InputMaybe<StringFilterInput>;
+  href?: InputMaybe<StringFilterInput>;
+  label?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentInputButtonFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentInputButtonFiltersInput>>>;
+  target?: InputMaybe<StringFilterInput>;
+  variant?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedMetaSocial = {
+  __typename?: 'ComponentSharedMetaSocial';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image?: Maybe<UploadFileEntityResponse>;
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork;
+  title: Scalars['String'];
+};
+
+export type ComponentSharedMetaSocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  socialNetwork?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedMetaSocialInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  image?: InputMaybe<Scalars['ID']>;
+  socialNetwork?: InputMaybe<Enum_Componentsharedmetasocial_Socialnetwork>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSharedSeo = {
+  __typename?: 'ComponentSharedSeo';
+  canonicalURL?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  keywords?: Maybe<Scalars['String']>;
+  metaDescription?: Maybe<Scalars['String']>;
+  metaImage: UploadFileEntityResponse;
+  metaRobots?: Maybe<Scalars['String']>;
+  metaSocial?: Maybe<Array<Maybe<ComponentSharedMetaSocial>>>;
+  metaTitle?: Maybe<Scalars['String']>;
+  metaViewport?: Maybe<Scalars['String']>;
+  structuredData?: Maybe<Scalars['JSON']>;
+};
+
+
+export type ComponentSharedSeoMetaSocialArgs = {
+  filters?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSharedSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
+  canonicalURL?: InputMaybe<StringFilterInput>;
+  keywords?: InputMaybe<StringFilterInput>;
+  metaDescription?: InputMaybe<StringFilterInput>;
+  metaRobots?: InputMaybe<StringFilterInput>;
+  metaSocial?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
+  metaTitle?: InputMaybe<StringFilterInput>;
+  metaViewport?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
+  structuredData?: InputMaybe<JsonFilterInput>;
+};
+
+export type ComponentSharedSeoInput = {
+  canonicalURL?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  metaDescription?: InputMaybe<Scalars['String']>;
+  metaImage?: InputMaybe<Scalars['ID']>;
+  metaRobots?: InputMaybe<Scalars['String']>;
+  metaSocial?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialInput>>>;
+  metaTitle?: InputMaybe<Scalars['String']>;
+  metaViewport?: InputMaybe<Scalars['String']>;
+  structuredData?: InputMaybe<Scalars['JSON']>;
+};
+
+export type ContactPage = {
+  __typename?: 'ContactPage';
   createdAt?: Maybe<Scalars['DateTime']>;
-  flexContent?: Maybe<Array<Maybe<ContentHomepageFlexContentDynamicZone>>>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<ContactPageRelationResponseCollection>;
+  seo?: Maybe<ComponentSharedSeo>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export type ContentHomepageEntity = {
-  __typename?: 'ContentHomepageEntity';
-  attributes?: Maybe<ContentHomepage>;
+export type ContactPageEntity = {
+  __typename?: 'ContactPageEntity';
+  attributes?: Maybe<ContactPage>;
   id?: Maybe<Scalars['ID']>;
 };
 
-export type ContentHomepageEntityResponse = {
-  __typename?: 'ContentHomepageEntityResponse';
-  data?: Maybe<ContentHomepageEntity>;
+export type ContactPageEntityResponse = {
+  __typename?: 'ContactPageEntityResponse';
+  data?: Maybe<ContactPageEntity>;
 };
 
-export type ContentHomepageFlexContentDynamicZone = ComponentContentTeaserCollection | ComponentContentText | Error;
-
-export type ContentHomepageInput = {
-  flexContent?: InputMaybe<Array<Scalars['ContentHomepageFlexContentDynamicZoneInput']>>;
+export type ContactPageInput = {
+  seo?: InputMaybe<ComponentSharedSeoInput>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type ContactPageRelationResponseCollection = {
+  __typename?: 'ContactPageRelationResponseCollection';
+  data: Array<ContactPageEntity>;
+};
+
+export type ContentPage = {
+  __typename?: 'ContentPage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<ContentPageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ContentPageLocalizationsArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ContentPageEntity = {
+  __typename?: 'ContentPageEntity';
+  attributes?: Maybe<ContentPage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ContentPageEntityResponse = {
+  __typename?: 'ContentPageEntityResponse';
+  data?: Maybe<ContentPageEntity>;
+};
+
+export type ContentPageEntityResponseCollection = {
+  __typename?: 'ContentPageEntityResponseCollection';
+  data: Array<ContentPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ContentPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ContentPageFiltersInput>;
+  not?: InputMaybe<ContentPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ContentPageInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentPageRelationResponseCollection = {
+  __typename?: 'ContentPageRelationResponseCollection';
+  data: Array<ContentPageEntity>;
 };
 
 export type DateTimeFilterInput = {
@@ -206,31 +365,6 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
-export enum Enum_Componentcontentbutton_Color {
-  Primary = 'primary',
-  Secondary = 'secondary'
-}
-
-export enum Enum_Componentcontentbutton_Target {
-  Blank = 'blank',
-  Self = 'self'
-}
-
-export enum Enum_Componentcontentbutton_Variant {
-  Default = 'default',
-  Outline = 'outline',
-  Text = 'text'
-}
-
-export enum Enum_Componentcontentheading_Subtitletag {
-  H1 = 'h1',
-  H2 = 'h2',
-  H3 = 'h3',
-  H4 = 'h4',
-  H5 = 'h5',
-  Paragraph = 'paragraph'
-}
-
 export enum Enum_Componentcontentheading_Titletag {
   H1 = 'h1',
   H2 = 'h2',
@@ -240,16 +374,45 @@ export enum Enum_Componentcontentheading_Titletag {
   Paragraph = 'paragraph'
 }
 
-export enum Enum_Componentcontentimagetextcollectio_Direction {
+export enum Enum_Componentcontentimagetextcollection_Direction {
   Even = 'even',
   Odd = 'odd'
 }
 
-export type Error = {
-  __typename?: 'Error';
-  code: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-};
+export enum Enum_Componentgeneralsocialmedia_Channel {
+  Facebook = 'facebook',
+  Instagram = 'instagram',
+  Linkedin = 'linkedin',
+  Tiktok = 'tiktok',
+  Twitter = 'twitter'
+}
+
+export enum Enum_Componentinputbutton_Color {
+  Primary = 'primary',
+  Secondary = 'secondary'
+}
+
+export enum Enum_Componentinputbutton_Target {
+  Blank = 'blank',
+  Self = 'self'
+}
+
+export enum Enum_Componentinputbutton_Variant {
+  Default = 'default',
+  Outline = 'outline',
+  Text = 'text'
+}
+
+export enum Enum_Componentsharedmetasocial_Socialnetwork {
+  Facebook = 'Facebook',
+  Twitter = 'Twitter'
+}
+
+export enum Enum_Webformshandler_Type {
+  Action = 'action',
+  Email = 'email',
+  Remote = 'remote'
+}
 
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
@@ -281,7 +444,84 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentContentButton | ComponentContentHeading | ComponentContentImageText | ComponentContentImageTextCollectio | ComponentContentTeaser | ComponentContentTeaserCollection | ComponentContentText | ContentHomepage | I18NLocale | SlugifySlug | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GeneralSetting = {
+  __typename?: 'GeneralSetting';
+  address?: Maybe<Scalars['String']>;
+  companyName?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  emailaddress?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<GeneralSettingRelationResponseCollection>;
+  logo?: Maybe<UploadFileEntityResponse>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  socials?: Maybe<Array<Maybe<ComponentGeneralSocialMedia>>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type GeneralSettingSocialsArgs = {
+  filters?: InputMaybe<ComponentGeneralSocialMediaFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type GeneralSettingEntity = {
+  __typename?: 'GeneralSettingEntity';
+  attributes?: Maybe<GeneralSetting>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type GeneralSettingEntityResponse = {
+  __typename?: 'GeneralSettingEntityResponse';
+  data?: Maybe<GeneralSettingEntity>;
+};
+
+export type GeneralSettingInput = {
+  address?: InputMaybe<Scalars['String']>;
+  companyName?: InputMaybe<Scalars['String']>;
+  emailaddress?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Scalars['ID']>;
+  phoneNumber?: InputMaybe<Scalars['String']>;
+  socials?: InputMaybe<Array<InputMaybe<ComponentGeneralSocialMediaInput>>>;
+};
+
+export type GeneralSettingRelationResponseCollection = {
+  __typename?: 'GeneralSettingRelationResponseCollection';
+  data: Array<GeneralSettingEntity>;
+};
+
+export type GenericMorph = ComponentContentHeading | ComponentContentImageText | ComponentContentImageTextCollection | ComponentContentTeaser | ComponentContentTeaserCollection | ComponentContentText | ComponentGeneralSocialMedia | ComponentInputButton | ComponentSharedMetaSocial | ComponentSharedSeo | ContactPage | ContentPage | GeneralSetting | Homepage | I18NLocale | NotFound | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WebformsForm | WebformsHandler | WebformsSetting | WebformsSubmission;
+
+export type Homepage = {
+  __typename?: 'Homepage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<HomepageRelationResponseCollection>;
+  seo?: Maybe<ComponentSharedSeo>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HomepageEntity = {
+  __typename?: 'HomepageEntity';
+  attributes?: Maybe<Homepage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HomepageEntityResponse = {
+  __typename?: 'HomepageEntityResponse';
+  data?: Maybe<HomepageEntity>;
+};
+
+export type HomepageInput = {
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type HomepageRelationResponseCollection = {
+  __typename?: 'HomepageRelationResponseCollection';
+  data: Array<HomepageEntity>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -395,21 +635,36 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  createContactPageLocalization?: Maybe<ContactPageEntityResponse>;
+  createContentPage?: Maybe<ContentPageEntityResponse>;
+  createContentPageLocalization?: Maybe<ContentPageEntityResponse>;
+  createGeneralSettingLocalization?: Maybe<GeneralSettingEntityResponse>;
+  createHomepageLocalization?: Maybe<HomepageEntityResponse>;
+  createNotFoundLocalization?: Maybe<NotFoundEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteContentHomepage?: Maybe<ContentHomepageEntityResponse>;
-  deleteSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  createWebformsForm?: Maybe<WebformsFormEntityResponse>;
+  createWebformsHandler?: Maybe<WebformsHandlerEntityResponse>;
+  createWebformsSubmission?: Maybe<WebformsSubmissionEntityResponse>;
+  deleteContactPage?: Maybe<ContactPageEntityResponse>;
+  deleteContentPage?: Maybe<ContentPageEntityResponse>;
+  deleteGeneralSetting?: Maybe<GeneralSettingEntityResponse>;
+  deleteHomepage?: Maybe<HomepageEntityResponse>;
+  deleteNotFound?: Maybe<NotFoundEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteWebformsForm?: Maybe<WebformsFormEntityResponse>;
+  deleteWebformsHandler?: Maybe<WebformsHandlerEntityResponse>;
+  deleteWebformsSetting?: Maybe<WebformsSettingEntityResponse>;
+  deleteWebformsSubmission?: Maybe<WebformsSubmissionEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -421,15 +676,22 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateContentHomepage?: Maybe<ContentHomepageEntityResponse>;
+  updateContactPage?: Maybe<ContactPageEntityResponse>;
+  updateContentPage?: Maybe<ContentPageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updateSlugifySlug?: Maybe<SlugifySlugEntityResponse>;
+  updateGeneralSetting?: Maybe<GeneralSettingEntityResponse>;
+  updateHomepage?: Maybe<HomepageEntityResponse>;
+  updateNotFound?: Maybe<NotFoundEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  updateWebformsForm?: Maybe<WebformsFormEntityResponse>;
+  updateWebformsHandler?: Maybe<WebformsHandlerEntityResponse>;
+  updateWebformsSetting?: Maybe<WebformsSettingEntityResponse>;
+  updateWebformsSubmission?: Maybe<WebformsSubmissionEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -441,8 +703,44 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreateSlugifySlugArgs = {
-  data: SlugifySlugInput;
+export type MutationCreateContactPageLocalizationArgs = {
+  data?: InputMaybe<ContactPageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateContentPageArgs = {
+  data: ContentPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateContentPageLocalizationArgs = {
+  data?: InputMaybe<ContentPageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateGeneralSettingLocalizationArgs = {
+  data?: InputMaybe<GeneralSettingInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateHomepageLocalizationArgs = {
+  data?: InputMaybe<HomepageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateNotFoundLocalizationArgs = {
+  data?: InputMaybe<NotFoundInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -466,8 +764,44 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationDeleteSlugifySlugArgs = {
+export type MutationCreateWebformsFormArgs = {
+  data: WebformsFormInput;
+};
+
+
+export type MutationCreateWebformsHandlerArgs = {
+  data: WebformsHandlerInput;
+};
+
+
+export type MutationCreateWebformsSubmissionArgs = {
+  data: WebformsSubmissionInput;
+};
+
+
+export type MutationDeleteContactPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteContentPageArgs = {
   id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteGeneralSettingArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteHomepageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteNotFoundArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -487,6 +821,21 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteWebformsFormArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteWebformsHandlerArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteWebformsSubmissionArgs = {
   id: Scalars['ID'];
 };
 
@@ -531,8 +880,16 @@ export type MutationResetPasswordArgs = {
 };
 
 
-export type MutationUpdateContentHomepageArgs = {
-  data: ContentHomepageInput;
+export type MutationUpdateContactPageArgs = {
+  data: ContactPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateContentPageArgs = {
+  data: ContentPageInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -542,9 +899,21 @@ export type MutationUpdateFileInfoArgs = {
 };
 
 
-export type MutationUpdateSlugifySlugArgs = {
-  data: SlugifySlugInput;
-  id: Scalars['ID'];
+export type MutationUpdateGeneralSettingArgs = {
+  data: GeneralSettingInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateHomepageArgs = {
+  data: HomepageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateNotFoundArgs = {
+  data: NotFoundInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -568,6 +937,29 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateWebformsFormArgs = {
+  data: WebformsFormInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateWebformsHandlerArgs = {
+  data: WebformsHandlerInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateWebformsSettingArgs = {
+  data: WebformsSettingInput;
+};
+
+
+export type MutationUpdateWebformsSubmissionArgs = {
+  data: WebformsSubmissionInput;
   id: Scalars['ID'];
 };
 
@@ -604,7 +996,12 @@ export type NavigationItem = {
   updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationItemRelated = ContentHomepage;
+export type NavigationItemRelated = {
+  __typename?: 'NavigationItemRelated';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
 
 export type NavigationItemRelatedData = {
   __typename?: 'NavigationItemRelatedData';
@@ -617,6 +1014,37 @@ export enum NavigationRenderType {
   Rfr = 'RFR',
   Tree = 'TREE'
 }
+
+export type NotFound = {
+  __typename?: 'NotFound';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<NotFoundRelationResponseCollection>;
+  seo?: Maybe<ComponentSharedSeo>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type NotFoundEntity = {
+  __typename?: 'NotFoundEntity';
+  attributes?: Maybe<NotFound>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type NotFoundEntityResponse = {
+  __typename?: 'NotFoundEntityResponse';
+  data?: Maybe<NotFoundEntity>;
+};
+
+export type NotFoundInput = {
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type NotFoundRelationResponseCollection = {
+  __typename?: 'NotFoundRelationResponseCollection';
+  data: Array<NotFoundEntity>;
+};
 
 export type Pagination = {
   __typename?: 'Pagination';
@@ -633,16 +1061,24 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
+export enum PublicationState {
+  Live = 'LIVE',
+  Preview = 'PREVIEW'
+}
+
 export type Query = {
   __typename?: 'Query';
-  contentHomepage?: Maybe<ContentHomepageEntityResponse>;
+  contactPage?: Maybe<ContactPageEntityResponse>;
+  contentPage?: Maybe<ContentPageEntityResponse>;
+  contentPages?: Maybe<ContentPageEntityResponseCollection>;
+  generalSetting?: Maybe<GeneralSettingEntityResponse>;
+  homepage?: Maybe<HomepageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  notFound?: Maybe<NotFoundEntityResponse>;
   renderNavigation: Array<Maybe<NavigationItem>>;
   renderNavigationChild: Array<Maybe<NavigationItem>>;
-  slugifySlug?: Maybe<SlugifySlugEntityResponse>;
-  slugifySlugs?: Maybe<SlugifySlugEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -651,6 +1087,43 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  webformsForm?: Maybe<WebformsFormEntityResponse>;
+  webformsForms?: Maybe<WebformsFormEntityResponseCollection>;
+  webformsHandler?: Maybe<WebformsHandlerEntityResponse>;
+  webformsHandlers?: Maybe<WebformsHandlerEntityResponseCollection>;
+  webformsSetting?: Maybe<WebformsSettingEntityResponse>;
+  webformsSubmission?: Maybe<WebformsSubmissionEntityResponse>;
+  webformsSubmissions?: Maybe<WebformsSubmissionEntityResponseCollection>;
+};
+
+
+export type QueryContactPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryContentPageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryContentPagesArgs = {
+  filters?: InputMaybe<ContentPageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryGeneralSettingArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryHomepageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -663,6 +1136,11 @@ export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryNotFoundArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -680,18 +1158,6 @@ export type QueryRenderNavigationChildArgs = {
   id: Scalars['String'];
   menuOnly?: InputMaybe<Scalars['Boolean']>;
   type?: InputMaybe<NavigationRenderType>;
-};
-
-
-export type QuerySlugifySlugArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-
-export type QuerySlugifySlugsArgs = {
-  filters?: InputMaybe<SlugifySlugFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -742,50 +1208,45 @@ export type QueryUsersPermissionsUsersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
+export type QueryWebformsFormArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWebformsFormsArgs = {
+  filters?: InputMaybe<WebformsFormFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryWebformsHandlerArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWebformsHandlersArgs = {
+  filters?: InputMaybe<WebformsHandlerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryWebformsSubmissionArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryWebformsSubmissionsArgs = {
+  filters?: InputMaybe<WebformsSubmissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
-};
-
-export type SlugifySlug = {
-  __typename?: 'SlugifySlug';
-  count?: Maybe<Scalars['Int']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  slug?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type SlugifySlugEntity = {
-  __typename?: 'SlugifySlugEntity';
-  attributes?: Maybe<SlugifySlug>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type SlugifySlugEntityResponse = {
-  __typename?: 'SlugifySlugEntityResponse';
-  data?: Maybe<SlugifySlugEntity>;
-};
-
-export type SlugifySlugEntityResponseCollection = {
-  __typename?: 'SlugifySlugEntityResponseCollection';
-  data: Array<SlugifySlugEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type SlugifySlugFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<SlugifySlugFiltersInput>>>;
-  count?: InputMaybe<IntFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  not?: InputMaybe<SlugifySlugFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<SlugifySlugFiltersInput>>>;
-  slug?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type SlugifySlugInput = {
-  count?: InputMaybe<Scalars['Int']>;
-  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type StringFilterInput = {
@@ -823,6 +1284,7 @@ export type UploadFile = {
   height?: Maybe<Scalars['Int']>;
   mime: Scalars['String'];
   name: Scalars['String'];
+  placeholder?: Maybe<Scalars['String']>;
   previewUrl?: Maybe<Scalars['String']>;
   provider: Scalars['String'];
   provider_metadata?: Maybe<Scalars['JSON']>;
@@ -866,6 +1328,7 @@ export type UploadFileFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UploadFileFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  placeholder?: InputMaybe<StringFilterInput>;
   previewUrl?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
   provider_metadata?: InputMaybe<JsonFilterInput>;
@@ -886,6 +1349,7 @@ export type UploadFileInput = {
   height?: InputMaybe<Scalars['Int']>;
   mime?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  placeholder?: InputMaybe<Scalars['String']>;
   previewUrl?: InputMaybe<Scalars['String']>;
   provider?: InputMaybe<Scalars['String']>;
   provider_metadata?: InputMaybe<Scalars['JSON']>;
@@ -1185,28 +1649,223 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type ComponentContentButtonFragment = { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target };
+export type WebformsForm = {
+  __typename?: 'WebformsForm';
+  fields?: Maybe<Scalars['JSON']>;
+  handlers?: Maybe<WebformsHandlerRelationResponseCollection>;
+  submissions?: Maybe<WebformsSubmissionRelationResponseCollection>;
+  title?: Maybe<Scalars['String']>;
+};
 
-export type ComponentContentHeadingFragment = { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null };
 
-export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } };
+export type WebformsFormHandlersArgs = {
+  filters?: InputMaybe<WebformsHandlerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
 
-export type ComponentContentTeaserFragment = { __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null };
 
-export type ComponentContentTeaserCollectionFragment = { __typename?: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null } | null> };
+export type WebformsFormSubmissionsArgs = {
+  filters?: InputMaybe<WebformsSubmissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
 
-export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } };
+export type WebformsFormEntity = {
+  __typename?: 'WebformsFormEntity';
+  attributes?: Maybe<WebformsForm>;
+  id?: Maybe<Scalars['ID']>;
+};
 
-export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null };
+export type WebformsFormEntityResponse = {
+  __typename?: 'WebformsFormEntityResponse';
+  data?: Maybe<WebformsFormEntity>;
+};
+
+export type WebformsFormEntityResponseCollection = {
+  __typename?: 'WebformsFormEntityResponseCollection';
+  data: Array<WebformsFormEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type WebformsFormFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WebformsFormFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  fields?: InputMaybe<JsonFilterInput>;
+  handlers?: InputMaybe<WebformsHandlerFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<WebformsFormFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<WebformsFormFiltersInput>>>;
+  submissions?: InputMaybe<WebformsSubmissionFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type WebformsFormInput = {
+  fields?: InputMaybe<Scalars['JSON']>;
+  handlers?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  submissions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type WebformsHandler = {
+  __typename?: 'WebformsHandler';
+  data?: Maybe<Scalars['JSON']>;
+  enabled?: Maybe<Scalars['Boolean']>;
+  form?: Maybe<WebformsFormEntityResponse>;
+  identifier?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['String']>;
+  type?: Maybe<Enum_Webformshandler_Type>;
+};
+
+export type WebformsHandlerEntity = {
+  __typename?: 'WebformsHandlerEntity';
+  attributes?: Maybe<WebformsHandler>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type WebformsHandlerEntityResponse = {
+  __typename?: 'WebformsHandlerEntityResponse';
+  data?: Maybe<WebformsHandlerEntity>;
+};
+
+export type WebformsHandlerEntityResponseCollection = {
+  __typename?: 'WebformsHandlerEntityResponseCollection';
+  data: Array<WebformsHandlerEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type WebformsHandlerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WebformsHandlerFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  data?: InputMaybe<JsonFilterInput>;
+  enabled?: InputMaybe<BooleanFilterInput>;
+  form?: InputMaybe<WebformsFormFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  identifier?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<WebformsHandlerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<WebformsHandlerFiltersInput>>>;
+  service?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type WebformsHandlerInput = {
+  data?: InputMaybe<Scalars['JSON']>;
+  enabled?: InputMaybe<Scalars['Boolean']>;
+  form?: InputMaybe<Scalars['ID']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Enum_Webformshandler_Type>;
+};
+
+export type WebformsHandlerRelationResponseCollection = {
+  __typename?: 'WebformsHandlerRelationResponseCollection';
+  data: Array<WebformsHandlerEntity>;
+};
+
+export type WebformsSetting = {
+  __typename?: 'WebformsSetting';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  from?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type WebformsSettingEntity = {
+  __typename?: 'WebformsSettingEntity';
+  attributes?: Maybe<WebformsSetting>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type WebformsSettingEntityResponse = {
+  __typename?: 'WebformsSettingEntityResponse';
+  data?: Maybe<WebformsSettingEntity>;
+};
+
+export type WebformsSettingInput = {
+  from?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type WebformsSubmission = {
+  __typename?: 'WebformsSubmission';
+  form?: Maybe<WebformsFormEntityResponse>;
+  submission?: Maybe<Scalars['JSON']>;
+};
+
+export type WebformsSubmissionEntity = {
+  __typename?: 'WebformsSubmissionEntity';
+  attributes?: Maybe<WebformsSubmission>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type WebformsSubmissionEntityResponse = {
+  __typename?: 'WebformsSubmissionEntityResponse';
+  data?: Maybe<WebformsSubmissionEntity>;
+};
+
+export type WebformsSubmissionEntityResponseCollection = {
+  __typename?: 'WebformsSubmissionEntityResponseCollection';
+  data: Array<WebformsSubmissionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type WebformsSubmissionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WebformsSubmissionFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  form?: InputMaybe<WebformsFormFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<WebformsSubmissionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<WebformsSubmissionFiltersInput>>>;
+  submission?: InputMaybe<JsonFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type WebformsSubmissionInput = {
+  form?: InputMaybe<Scalars['ID']>;
+  submission?: InputMaybe<Scalars['JSON']>;
+};
+
+export type WebformsSubmissionRelationResponseCollection = {
+  __typename?: 'WebformsSubmissionRelationResponseCollection';
+  data: Array<WebformsSubmissionEntity>;
+};
+
+export type ComponentInputButtonFragment = { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target };
+
+export type ComponentContentHeadingFragment = { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag };
+
+export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, text: string, background: boolean, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } };
+
+export type ComponentContentTeaserFragment = { __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null };
+
+export type ComponentContentTeaserCollectionFragment = { __typename?: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null } | null> };
+
+export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', id: string, text: string, background: boolean, heading?: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag } | null, button: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } };
+
+export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null };
 
 export type NavigationQueryVariables = Exact<{
   id: Scalars['String'];
+  locale: Scalars['I18NLocaleCode'];
 }>;
 
 
-export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ContentHomepage' } | null } | null } | null> };
+export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> };
 
-export type SingleTypeHomepageQueryVariables = Exact<{ [key: string]: never; }>;
+export type ComponentUploadFileFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null };
+
+export type SingleTypeGeneralQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode'];
+}>;
 
 
-export type SingleTypeHomepageQuery = { contentHomepage?: { __typename?: 'ContentHomepageEntityResponse', data?: { __typename?: 'ContentHomepageEntity', id?: string | null, attributes?: { __typename?: 'ContentHomepage', flexContent?: Array<{ __typename: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button?: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } | null } | null> } | { __typename: 'ComponentContentText', id: string, text: string, background: boolean, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag, subtitle?: string | null, subtitleTag?: Enum_Componentcontentheading_Subtitletag | null }, button: { __typename?: 'ComponentContentButton', id: string, label: string, href: string, color: Enum_Componentcontentbutton_Color, variant: Enum_Componentcontentbutton_Variant, target: Enum_Componentcontentbutton_Target } } | { __typename: 'Error' } | null> | null } | null } | null } | null };
+export type SingleTypeGeneralQuery = { generalSetting?: { __typename?: 'GeneralSettingEntityResponse', data?: { __typename?: 'GeneralSettingEntity', id?: string | null, attributes?: { __typename?: 'GeneralSetting', companyName?: string | null, emailaddress?: string | null, phoneNumber?: string | null, address?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null } | null } | null } | null } | null };
+
+export type SingleTypeHomepageQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode'];
+}>;
+
+
+export type SingleTypeHomepageQuery = { homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', id?: string | null } | null } | null };
