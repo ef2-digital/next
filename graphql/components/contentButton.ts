@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const COMPONENT_CONTENT_BUTTON = gql`
-    fragment ComponentContentButton on ComponentContentButton {
+    fragment ComponentInputButton on ComponentInputButton {
         id
         label
         href

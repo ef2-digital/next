@@ -1,32 +1,32 @@
 import { Button, ButtonProps } from '@ef2/react';
 import {
-    ComponentContentButtonFragment,
-    Enum_Componentcontentbutton_Target,
-    Enum_Componentcontentbutton_Color,
-    Enum_Componentcontentbutton_Variant
+    ComponentInputButtonFragment,
+    Enum_Componentinputbutton_Target,
+    Enum_Componentinputbutton_Color,
+    Enum_Componentinputbutton_Variant
 } from 'graphql/types';
 import Link from 'next/link';
 
-interface StrapiButtonProps extends ComponentContentButtonFragment {
+interface StrapiButtonProps extends ComponentInputButtonFragment {
     className?: string;
 }
 
-const colorMap = new Map<Enum_Componentcontentbutton_Color, string>([
-    [Enum_Componentcontentbutton_Color.Primary, 'primary'],
-    [Enum_Componentcontentbutton_Color.Secondary, 'secondary']
+const colorMap = new Map<Enum_Componentinputbutton_Color, string>([
+    [Enum_Componentinputbutton_Color.Primary, 'primary'],
+    [Enum_Componentinputbutton_Color.Secondary, 'secondary']
 ]);
 
-const variantMap = new Map<Enum_Componentcontentbutton_Variant, string>([
-    [Enum_Componentcontentbutton_Variant.Outline, 'outline'],
-    [Enum_Componentcontentbutton_Variant.Text, 'text']
+const variantMap = new Map<Enum_Componentinputbutton_Variant, string>([
+    [Enum_Componentinputbutton_Variant.Outline, 'outline'],
+    [Enum_Componentinputbutton_Variant.Text, 'text']
 ]);
 
-const targetMap = new Map<Enum_Componentcontentbutton_Target, string>([
-    [Enum_Componentcontentbutton_Target.Blank, '_blank'],
-    [Enum_Componentcontentbutton_Target.Self, '_self']
+const targetMap = new Map<Enum_Componentinputbutton_Target, string>([
+    [Enum_Componentinputbutton_Target.Blank, '_blank'],
+    [Enum_Componentinputbutton_Target.Self, '_self']
 ]);
 
-export const getButtonProps = (component: ComponentContentButtonFragment): ButtonProps & { href: string } => {
+export const getButtonProps = (component: ComponentInputButtonFragment): ButtonProps & { href: string } => {
     return {
         as: 'a',
         children: component.label,

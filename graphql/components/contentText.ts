@@ -13,7 +13,7 @@ export const COMPONENT_CONTENT_TEXT = gql`
         }
         text
         button {
-            ...ComponentContentButton
+            ...ComponentInputButton
         }
         background
     }
