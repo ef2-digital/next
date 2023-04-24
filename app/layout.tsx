@@ -54,7 +54,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
             <body className="md:overflow-visible">
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <ClientLayout>
-                        <Header navigation={layoutData.navigation} logo={layoutData.generalSettings.logo?.data?.attributes!} />
+                        <Header navigation={layoutData.navigation} logo={layoutData.generalSettings?.logo?.data?.attributes!} />
                         {children}
                         <Footer {...layoutData.generalSettings} />
                     </ClientLayout>
