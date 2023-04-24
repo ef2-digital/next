@@ -1,13 +1,12 @@
+import gql from 'graphql-tag';
 import { cache } from 'react';
-import { HeadingProps, NavigationItem } from '@ef2/content-components-react';
+import { NavigationItem } from '@ef2/content-components-react';
 import { print, DocumentNode } from 'graphql';
 import { NAVIGATION } from 'graphql/components/navigation';
-import { ComponentContentHeadingFragment, Maybe, NavigationItemFragment, NavigationQuery } from 'graphql/types';
-import { ElementType } from 'react';
-
-export const notNull = <T extends object>(value: T | null | undefined): value is T => {
-    return value !== null && value !== undefined;
-};
+import { ComponentSharedSeoFragment, NavigationQuery } from 'graphql/types';
+import { capitalizeFirstLetter, getNavigationItems } from './helpers';
+import { COMPONENT_SHARED_SEO } from 'graphql/components/sharedSeo';
+import { Metadata } from 'next';
 
 export const fetchGraphql = cache(async <T extends object>(query: DocumentNode | string, variables?: object): Promise<T> => {
     const body = typeof query === 'string' ? JSON.stringify({ query, variables }) : JSON.stringify({ query: print(query), variables });
@@ -18,52 +17,114 @@ export const fetchGraphql = cache(async <T extends object>(query: DocumentNode |
         body
     });
 
-    return (await response.json()).data;
+    const data: { data: T; errors?: { message: 'string' }[] } = await response.json();
+
+    if (data.errors) {
+        throw new Error(data.errors[0].message);
+    }
+
+    return data.data;
 });
 
-export const getHeadingProps = (heading: ComponentContentHeadingFragment): HeadingProps => {
-    return {
-        titleHtml: heading.title,
-        titleAs: heading.titleTag as ElementType | null,
-        subtitle: heading.subtitle,
-        subtitleAs: heading.subtitleTag as ElementType | null
+export const getSeoQuery = (contentType: string) => gql`
+    ${COMPONENT_SHARED_SEO}
+
+    query SingleType${capitalizeFirstLetter(contentType)}Seo($locale: I18NLocaleCode!) {
+        ${contentType}(locale: $locale) {
+            data {
+                attributes {
+                    seo {
+                        ...ComponentSharedSeo
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const getSeoCollectionQuery = (contentType: string) => gql`
+    ${COMPONENT_SHARED_SEO}
+
+    query Collection${capitalizeFirstLetter(contentType)}Seo($locale: I18NLocaleCode!, $slug: String!) {
+        ${contentType}(locale: $locale, filters: { slug: { eq: $slug } }) {
+            data {
+                attributes {
+                    seo {
+                        ...ComponentSharedSeo
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export type CollectionSeoQuery = {
+    [key: string]: {
+        data?: {
+            attributes?: {
+                seo?: ComponentSharedSeoFragment;
+            };
+        }[];
     };
 };
 
-const getNavigationItemPath = (
-    path?: Maybe<string>,
-    related?: Maybe<{
-        __typename?: 'NavigationItemRelatedData';
-        attributes?: Maybe<{ __typename?: string; slug?: Maybe<string> }>;
-    }>
-) => {
-    // if (related?.attributes?.__typename === 'Page') {
-    //     return (related.attributes as Page).slug;
-    // }
-
-    // if (related?.attributes?.__typename === 'ArticlesPage') {
-    //     return 'blog';
-    // }
-
-    return path;
+export type SingleTypeSeoQuery = {
+    [key: string]: {
+        data?: {
+            attributes?: {
+                seo?: ComponentSharedSeoFragment;
+            };
+        };
+    };
 };
 
-export const getNavigationItems = (navigation: Pick<NavigationQuery, 'navigation'>): NavigationItem[] => {
-    return navigation.navigation.filter(notNull).map((item) => getNavigationItem(item));
-};
+const getSeoMetadata = (seo?: ComponentSharedSeoFragment): Metadata => {
+    if (!seo) {
+        return {};
+    }
 
-export const getNavigationItem = (item: NavigationItemFragment & { items?: (NavigationItemFragment | null)[] | null }): NavigationItem => {
-    const external = item.type === 'EXTERNAL';
-    const path = getNavigationItemPath(item.path, item.related) || item.externalPath || '/';
+    const image = seo.metaImage.data?.attributes;
 
     return {
-        id: item.id,
-        title: item.title,
-        path: item.items && item.items.length > 0 ? undefined : path.startsWith('/') || external ? path : `/${path}`,
-        items: item.items?.filter(notNull).map((item) => getNavigationItem(item)),
-        // bold: !!item.bold,
-        external
+        title: seo.metaTitle,
+        robots: seo.metaRobots,
+        description: seo.metaDescription,
+        keywords: seo.keywords,
+        viewport: seo.metaViewport,
+        ...(seo.canonicalURL ? { alternates: { canonical: seo.canonicalURL } } : {}),
+        ...(seo.metaTitle
+            ? {
+                  openGraph: {
+                      title: seo.metaTitle,
+                      images: [
+                          ...(image?.url
+                              ? [
+                                    {
+                                        url: `${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}?resize=1200x630`,
+                                        alt: image?.alternativeText ?? '',
+                                        width: 1200,
+                                        height: 630
+                                    }
+                                ]
+                              : [])
+                      ]
+                  }
+              }
+            : {})
     };
+};
+
+export const getCollectionSeoMetadata = async (contentType: string, slug: string, locale?: string): Promise<Metadata> => {
+    const response = await fetchGraphql<CollectionSeoQuery>(getSeoCollectionQuery(contentType), locale ? { locale, slug } : { slug });
+    const collection = response && response[contentType].data?.filter(notNull);
+    const data = collection && collection.length > 0 ? collection[0].attributes : undefined;
+    return getSeoMetadata(data?.seo);
+};
+
+export const getSingleTypeSeoMetadata = async (contentType: string, locale?: string): Promise<Metadata> => {
+    const response = await fetchGraphql<SingleTypeSeoQuery>(getSeoQuery(contentType), locale ? { locale } : undefined);
+    const data = response && response[contentType].data?.attributes;
+    return getSeoMetadata(data?.seo);
 };
 
 export const fetchGraphqlNavigation = async (id: string, locale: string): Promise<NavigationItem[]> => {

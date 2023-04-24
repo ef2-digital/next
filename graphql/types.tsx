@@ -974,6 +974,7 @@ export type MutationUploadArgs = {
 
 export type NavigationItem = {
   __typename?: 'NavigationItem';
+  bold?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['String']>;
   createdBy?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['String']>;
@@ -1836,15 +1837,15 @@ export type ComponentInputButtonFragment = { __typename?: 'ComponentInputButton'
 
 export type ComponentContentHeadingFragment = { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag };
 
-export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, text: string, background: boolean, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } };
+export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, text: string, background: boolean, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } };
 
-export type ComponentContentTeaserFragment = { __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null };
+export type ComponentContentTeaserFragment = { __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null };
 
-export type ComponentContentTeaserCollectionFragment = { __typename?: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null } | null> };
+export type ComponentContentTeaserCollectionFragment = { __typename?: 'ComponentContentTeaserCollection', id: string, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, teasers: Array<{ __typename?: 'ComponentContentTeaser', id: string, text: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null }, heading: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null } | null> };
 
 export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', id: string, text: string, background: boolean, heading?: { __typename?: 'ComponentContentHeading', id: string, title: string, titleTag: Enum_Componentcontentheading_Titletag } | null, button: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, color: Enum_Componentinputbutton_Color, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } };
 
-export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null };
+export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, bold?: boolean | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null };
 
 export type NavigationQueryVariables = Exact<{
   id: Scalars['String'];
@@ -1852,20 +1853,29 @@ export type NavigationQueryVariables = Exact<{
 }>;
 
 
-export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> };
+export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, bold?: boolean | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, bold?: boolean | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> };
 
-export type ComponentUploadFileFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null };
+export type ComponentSharedSeoFragment = { __typename?: 'ComponentSharedSeo', id: string, metaTitle?: string | null, metaRobots?: string | null, metaDescription?: string | null, metaViewport?: string | null, canonicalURL?: string | null, keywords?: string | null, metaImage: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
+
+export type ComponentUploadFileFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number };
 
 export type SingleTypeGeneralQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
 }>;
 
 
-export type SingleTypeGeneralQuery = { generalSetting?: { __typename?: 'GeneralSettingEntityResponse', data?: { __typename?: 'GeneralSettingEntity', id?: string | null, attributes?: { __typename?: 'GeneralSetting', companyName?: string | null, emailaddress?: string | null, phoneNumber?: string | null, address?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null } | null } | null } | null } | null } | null } | null };
+export type SingleTypeGeneralQuery = { generalSetting?: { __typename?: 'GeneralSettingEntityResponse', data?: { __typename?: 'GeneralSettingEntity', id?: string | null, attributes?: { __typename?: 'GeneralSetting', companyName?: string | null, emailaddress?: string | null, phoneNumber?: string | null, address?: string | null, logo?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', id?: string | null, attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } | null, socials?: Array<{ __typename?: 'ComponentGeneralSocialMedia', id: string, channel?: Enum_Componentgeneralsocialmedia_Channel | null, url: string } | null> | null } | null } | null } | null };
 
 export type SingleTypeHomepageQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
 }>;
 
 
-export type SingleTypeHomepageQuery = { homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', id?: string | null } | null } | null };
+export type SingleTypeHomepageQuery = { homepage?: { __typename?: 'HomepageEntityResponse', data?: { __typename?: 'HomepageEntity', id?: string | null, attributes?: { __typename?: 'Homepage', title: string } | null } | null } | null };
+
+export type SingleTypeNotFoundQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode'];
+}>;
+
+
+export type SingleTypeNotFoundQuery = { notFound?: { __typename?: 'NotFoundEntityResponse', data?: { __typename?: 'NotFoundEntity', attributes?: { __typename?: 'NotFound', title: string } | null } | null } | null };

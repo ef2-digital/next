@@ -13,10 +13,8 @@ const StrapiContentText = ({ text, fragment }: StrapiContentTextProps) => {
         <Text
             {...text}
             html={fragment.text}
-            titleHtml={fragment.heading.title}
-            titleAs={fragment.heading.titleTag as ElementType}
-            subtitle={fragment.heading.subtitle}
-            subtitleAs={fragment.heading.subtitleTag as ElementType}
+            titleHtml={fragment?.heading?.title}
+            titleAs={fragment?.heading?.titleTag as ElementType}
             button={fragment.button ? <StrapiButton {...fragment.button} className="mt-8" /> : undefined}
         />
     );

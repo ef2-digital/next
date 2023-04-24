@@ -1,6 +1,7 @@
 import { gql } from 'graphql-tag';
 import { COMPONENT_UPLOAD_FILE } from '../components/uploadFile';
-export const SINGLE_TYPE_HOMEPAGE = gql`
+
+export const SINGLE_TYPE_GENERAL = gql`
     ${COMPONENT_UPLOAD_FILE}
 
     query SingleTypeGeneral($locale: I18NLocaleCode!) {
@@ -20,6 +21,11 @@ export const SINGLE_TYPE_HOMEPAGE = gql`
                     emailaddress
                     phoneNumber
                     address
+                    socials {
+                        id
+                        channel
+                        url
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 import { ComponentContentTeaserCollectionFragment, ComponentContentTextFragment } from 'graphql/types';
 import { Teasers, TeasersProps } from '@ef2/content-components-react';
-import { getHeadingProps, notNull } from 'utils/graphql';
+import { getHeadingProps, notNull } from 'utils/helpers';
 import StrapiContentTeaser from './StrapiContentTeaser';
 import StrapiButton from './StrapiButton';
 

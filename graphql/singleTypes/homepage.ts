@@ -5,6 +5,9 @@ export const SINGLE_TYPE_HOMEPAGE = gql`
         homepage(locale: $locale) {
             data {
                 id
+                attributes {
+                    title
+                }
             }
         }
     }

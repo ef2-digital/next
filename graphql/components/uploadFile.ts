@@ -5,5 +5,10 @@ export const COMPONENT_UPLOAD_FILE = gql`
         alternativeText
         url
         placeholder
+        hash
+        mime
+        name
+        provider
+        size
     }
 `;

@@ -1,4 +1,4 @@
-import { notNull } from 'utils/graphql';
+import { notNull } from 'utils/helpers';
 import StrapiContentFlex from './StrapiContentFlex';
 
 interface StrapiContentFlexComponentsProps {
@@ -13,7 +13,7 @@ const StrapiContentFlexComponents = ({ components }: StrapiContentFlexComponents
     return (
         <>
             {components.filter(notNull).map((component) => (
-                <StrapiContentFlex typename={component.__typename} data={component} />
+                <StrapiContentFlex typename={component.__typename} data={component} key={component.__typename} />
             ))}
         </>
     );
