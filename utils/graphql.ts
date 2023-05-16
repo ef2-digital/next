@@ -42,6 +42,18 @@ export const getSeoQuery = (contentType: string) => gql`
     }
 `;
 
+export const getCollectionPathsQuery = (collection: string) => gql`
+    query Collection${capitalizeFirstLetter(collection)}Paths($locale: I18NLocaleCode) {
+        ${collection}(locale: $locale) {
+            data {
+                attributes {
+                    slug
+                }
+            }
+        }
+    }
+`;
+
 export const getSeoCollectionQuery = (contentType: string) => gql`
     ${COMPONENT_SHARED_SEO}
 
@@ -58,25 +70,24 @@ export const getSeoCollectionQuery = (contentType: string) => gql`
     }
 `;
 
-export type CollectionSeoQuery = {
+export type SingleTypeQuery<T> = {
     [key: string]: {
         data?: {
-            attributes?: {
-                seo?: ComponentSharedSeoFragment;
-            };
+            attributes: T;
+        };
+    };
+};
+
+export type CollectionQuery<T> = {
+    [key: string]: {
+        data?: {
+            attributes: T;
         }[];
     };
 };
 
-export type SingleTypeSeoQuery = {
-    [key: string]: {
-        data?: {
-            attributes?: {
-                seo?: ComponentSharedSeoFragment;
-            };
-        };
-    };
-};
+export type CollectionSeoQuery = CollectionQuery<{ seo?: ComponentSharedSeoFragment }>;
+export type SingleTypeSeoQuery = SingleTypeQuery<{ seo?: ComponentSharedSeoFragment }>;
 
 const getSeoMetadata = (seo?: ComponentSharedSeoFragment): Metadata => {
     if (!seo) {
@@ -112,6 +123,12 @@ const getSeoMetadata = (seo?: ComponentSharedSeoFragment): Metadata => {
               }
             : {})
     };
+};
+
+export const getCollectionPaths = async (contentType: string, locale?: string): Promise<{ slug: string }[]> => {
+    const response = await fetchGraphql<CollectionQuery<{ slug: string }>>(getCollectionPathsQuery(contentType), { locale });
+    const data = (response && response[contentType].data) ?? [];
+    return data.map((path) => ({ slug: path.attributes.slug }));
 };
 
 export const getCollectionSeoMetadata = async (contentType: string, slug: string, locale?: string): Promise<Metadata> => {
