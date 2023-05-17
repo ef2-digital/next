@@ -11,10 +11,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import ClientLayout from '../ClientLayout';
 import Header from 'components/layout/Header';
 import Footer from 'components/layout/Footer';
-import {notFound} from 'next/navigation';
- 
+import { notFound } from 'next/navigation';
+
 export function generateStaticParams() {
-  return [{locale: 'en'}, {locale: 'de'}];
+    return [{ locale: 'en' }, { locale: 'de' }];
 }
 
 const inter = Inter({
@@ -41,10 +41,6 @@ export const getLayoutData = async (locale?: string): Promise<LayoutDataProps> =
     return { generalSettings, navigation };
 };
 
-const getMessages = async (locale: string) => {
-    return (await import(`../messages/${locale}.json`)).default;
-};
-
 export interface LocalePageProps extends PropsWithChildren {
     params: { locale: string; slug?: string };
 }
@@ -53,9 +49,9 @@ const RootLayout = async ({ children, params: { locale } }: LocalePageProps) => 
     let messages;
 
     try {
-      messages = (await import(`../../messages/${locale}.json`)).default;
+        messages = (await import(`../../messages/${locale}.json`)).default;
     } catch (error) {
-      notFound();
+        notFound();
     }
 
     const layoutData = await getLayoutData(locale);
