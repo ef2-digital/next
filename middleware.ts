@@ -1,6 +1,6 @@
-import createIntlMiddleware from 'next-intl/middleware';
+import createMiddleware from 'next-intl/middleware';
 
-export default createIntlMiddleware({
+export default createMiddleware({
     locales: ['nl'],
     defaultLocale: 'nl'
 
@@ -17,5 +17,5 @@ export default createIntlMiddleware({
 });
 
 export const config = {
-    matcher: ['/((?!api|_next|images|next/image|examples|[\\w-]+\\.\\w+).*)']
+    matcher: ['/((?!api|_next|images|next/image|public|[\\w-]+\\.\\w+).*)']
 };
