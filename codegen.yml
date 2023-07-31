@@ -5,6 +5,7 @@ generates:
     plugins:
       - "typescript"
       - "typescript-operations"
+      # - plugins/test.ts
     config:
       withHooks: true
       fetcher: fetch

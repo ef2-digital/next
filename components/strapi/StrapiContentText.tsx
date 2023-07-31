@@ -1,22 +1,26 @@
 import { ComponentContentTextFragment } from 'graphql/types';
-import { Text, TextProps } from '@ef2/content-components-react';
-import { ElementType } from 'react';
-import StrapiButton from './StrapiButton';
+import Paragraph from 'components/layout/Paragraph';
+import { getParagraphProps } from 'utils/helpers';
+import { Component } from 'utils/graphql/types';
+import { Container, Row } from 'components/layout';
+import { classNamesTailwind } from 'utils/theme';
+import Wrapper from 'components/layout/Wrapper';
 
-export interface StrapiContentTextProps {
-    text?: TextProps;
-    fragment: ComponentContentTextFragment;
-}
-
-const StrapiContentText = ({ text, fragment }: StrapiContentTextProps) => {
+const StrapiContentText = ({ fragment, className }: Component<ComponentContentTextFragment>) => {
     return (
-        <Text
-            {...text}
-            html={fragment.text}
-            titleHtml={fragment?.heading?.title}
-            titleAs={fragment?.heading?.titleTag as ElementType}
-            button={fragment.button ? <StrapiButton {...fragment.button} className="mt-8" /> : undefined}
-        />
+        <Wrapper className={className} background={fragment.background}>
+            <Container>
+                <Row>
+                    <div
+                        className={classNamesTailwind('col-span-full md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3', {
+                            'md:col-start-3 md:col-span-8 lg:col-span-6 lg:col-start-4': fragment.narrow
+                        })}
+                    >
+                        <Paragraph {...getParagraphProps(fragment.paragraph)} />
+                    </div>
+                </Row>
+            </Container>
+        </Wrapper>
     );
 };
 

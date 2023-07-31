@@ -1,19 +1,23 @@
-import { useLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { LocalePageProps } from '../layout';
+import ClientLayout from 'app/ClientLayout';
+import { PropsWithChildren } from 'react';
+import 'styles/globals.scss';
 
-const Layout = ({ children, params }: LocalePageProps) => {
-    const locale = useLocale();
+export interface RootLayoutProps<T extends object = {}> {
+    params: { locale: string } & T;
+}
 
+const Layout = ({ children }: PropsWithChildren) => {
     // Show a 404 error if the user requests an unknown locale
-    if (params.locale !== locale) {
-        notFound();
-    }
+    // if (params.locale !== locale) {
+    // notFound();
+    // }
 
     return (
-        <>
-            <main id="main">{children}</main>
-        </>
+        <html>
+            <body>
+                <ClientLayout>{children}</ClientLayout>
+            </body>
+        </html>
     );
 };
 

@@ -2,6 +2,7 @@
 module.exports = {
     content: [
         './theme.ts',
+        './config.tsx',
         './app/**/*.{js,ts,jsx,tsx}',
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
@@ -19,33 +20,51 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#00212D',
-                    50: '#006489',
-                    100: '#005D7F',
-                    200: '#004E6A',
-                    300: '#003F56',
-                    400: '#003041',
-                    500: '#00212D',
-                    600: '#001219',
-                    700: '#000304'
+                    DEFAULT: '#312783',
+                    50: '#4E40C6',
+                    100: '#493AC2',
+                    200: '#4335B2',
+                    300: '#3D30A2',
+                    400: '#372C93',
+                    500: '#312783',
+                    600: '#2B2273',
+                    700: '#251E64',
+                    800: '#1F1954',
+                    900: '#191444',
+                    950: '#17123C'
                 },
                 secondary: {
-                    DEFAULT: '#FF7A00',
-                    50: '#FFAA5C',
-                    100: '#FFA552',
-                    200: '#FF9A3D',
-                    300: '#FF8F29',
-                    400: '#FF8514',
-                    500: '#FF7A00',
-                    600: '#EB7000',
-                    700: '#D66600',
-                    800: '#C25D00',
-                    900: '#AD5300'
+                    DEFAULT: '#009FE3',
+                    50: '#40C6FF',
+                    100: '#36C3FF',
+                    200: '#21BDFF',
+                    300: '#0DB6FF',
+                    400: '#00ADF7',
+                    500: '#009FE3',
+                    600: '#0091CF',
+                    700: '#0082BA',
+                    800: '#0074A6',
+                    900: '#006691',
+                    950: '#005F87'
                 },
                 text: '#00212D',
                 dark: '#00212D',
                 background: '#E6E9EA'
-            }
+            },
+            keyframes: {
+                'slide-down': {
+                    from: { height: 0 },
+                    to: { height: 'var(--radix-accordion-content-height)' },
+                },
+                'slide-up': {
+                    from: { height: 'var(--radix-accordion-content-height)' },
+                    to: { height: 0 },
+                },
+            },
+            animation: {
+                'slide-down': 'slide-down 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+                'slide-up': 'slide-up 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+            },
         }
     },
     plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/typography')]

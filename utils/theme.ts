@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-export const classNamesTailwind = (...args: (string | { [key: string]: boolean } | undefined)[]): string => {
+export const classNamesTailwind = (...args: (string | { [key: string]: boolean | undefined } | undefined)[]): string => {
     return args.reduce<string>((a: string, c) => {
         if (!c) {
             return a;

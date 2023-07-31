@@ -12,7 +12,6 @@ export const NAVIGATION_ITEM = gql`
                 __typename
             }
         }
-        bold
     }
 `;
 
