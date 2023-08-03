@@ -86,7 +86,7 @@ export const getTeasersQuery = ({
                 }
             }
         }
-    }
+    } 
 `;
 
 export const getSingleTypePageQuery = ({
