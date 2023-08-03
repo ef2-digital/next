@@ -5,3 +5,6 @@ export { default as StrapiButton } from './StrapiButton';
 export { default as StrapiUploadFile } from './StrapiUploadFile';
 export { default as StrapiAccordion } from './StrapiAccordion';
 export { default as StrapiContentImage } from './StrapiContentImage';
+export { default as StrapiInputLinks } from './StrapiInputLinks';
+export { default as StrapiTeaser } from './StrapiTeaser';
+export { default as StrapiPagination } from './StrapiPagination';

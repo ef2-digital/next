@@ -12,8 +12,6 @@ interface StrapiContentFlexProps<T> {
 const StrapiContentFlex = <T extends object>({ typename, data, className }: StrapiContentFlexProps<T>) => {
     const Content = COMPONENT_MAP.get(typename)?.component;
 
-    console.log({ typename, test: COMPONENT_MAP.get(typename)})
-
     if (!Content) {
         return null;
     }

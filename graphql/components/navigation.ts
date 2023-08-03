@@ -10,6 +10,12 @@ export const NAVIGATION_ITEM = gql`
         related {
             attributes {
                 __typename
+                ... on ContentPage {
+                    slug
+                }
+                ... on ArticlePage {
+                    slug
+                }
             }
         }
     }

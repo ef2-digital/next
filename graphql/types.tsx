@@ -10,6 +10,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  ArticleOverviewPageFlexContentDynamicZoneInput: any;
+  ArticleOverviewPageHeroDynamicZoneInput: any;
+  ArticlePageFlexContentDynamicZoneInput: any;
+  ArticlePageHeroDynamicZoneInput: any;
   ContactPageFlexContentDynamicZoneInput: any;
   ContactPageHeroDynamicZoneInput: any;
   ContentPageFlexContentDynamicZoneInput: any;
@@ -22,6 +26,120 @@ export type Scalars = {
   NotFoundFlexContentDynamicZoneInput: any;
   NotFoundHeroDynamicZoneInput: any;
   Upload: any;
+};
+
+export type ArticleOverviewPage = {
+  __typename?: 'ArticleOverviewPage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  flexContent: Array<Maybe<ArticleOverviewPageFlexContentDynamicZone>>;
+  hero: Array<Maybe<ArticleOverviewPageHeroDynamicZone>>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<ArticleOverviewPageRelationResponseCollection>;
+  seo?: Maybe<ComponentSharedSeo>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ArticleOverviewPageEntity = {
+  __typename?: 'ArticleOverviewPageEntity';
+  attributes?: Maybe<ArticleOverviewPage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ArticleOverviewPageEntityResponse = {
+  __typename?: 'ArticleOverviewPageEntityResponse';
+  data?: Maybe<ArticleOverviewPageEntity>;
+};
+
+export type ArticleOverviewPageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | Error;
+
+export type ArticleOverviewPageHeroDynamicZone = ComponentHeroHeroButtons | Error;
+
+export type ArticleOverviewPageInput = {
+  flexContent?: InputMaybe<Array<Scalars['ArticleOverviewPageFlexContentDynamicZoneInput']>>;
+  hero?: InputMaybe<Array<Scalars['ArticleOverviewPageHeroDynamicZoneInput']>>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ArticleOverviewPageRelationResponseCollection = {
+  __typename?: 'ArticleOverviewPageRelationResponseCollection';
+  data: Array<ArticleOverviewPageEntity>;
+};
+
+export type ArticlePage = {
+  __typename?: 'ArticlePage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  flexContent: Array<Maybe<ArticlePageFlexContentDynamicZone>>;
+  hero: Array<Maybe<ArticlePageHeroDynamicZone>>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<ArticlePageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  seo?: Maybe<ComponentSharedSeo>;
+  slug: Scalars['String'];
+  teaser?: Maybe<ComponentSharedTeaser>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ArticlePageLocalizationsArgs = {
+  filters?: InputMaybe<ArticlePageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ArticlePageEntity = {
+  __typename?: 'ArticlePageEntity';
+  attributes?: Maybe<ArticlePage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ArticlePageEntityResponse = {
+  __typename?: 'ArticlePageEntityResponse';
+  data?: Maybe<ArticlePageEntity>;
+};
+
+export type ArticlePageEntityResponseCollection = {
+  __typename?: 'ArticlePageEntityResponseCollection';
+  data: Array<ArticlePageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ArticlePageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ArticlePageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ArticlePageFiltersInput>;
+  not?: InputMaybe<ArticlePageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ArticlePageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  teaser?: InputMaybe<ComponentSharedTeaserFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ArticlePageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | Error;
+
+export type ArticlePageHeroDynamicZone = ComponentHeroHeroButtons | Error;
+
+export type ArticlePageInput = {
+  flexContent?: InputMaybe<Array<Scalars['ArticlePageFlexContentDynamicZoneInput']>>;
+  hero?: InputMaybe<Array<Scalars['ArticlePageHeroDynamicZoneInput']>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  teaser?: InputMaybe<ComponentSharedTeaserInput>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ArticlePageRelationResponseCollection = {
+  __typename?: 'ArticlePageRelationResponseCollection';
+  data: Array<ArticlePageEntity>;
 };
 
 export type BooleanFilterInput = {
@@ -99,6 +217,7 @@ export type ComponentContentQuote = {
   button?: Maybe<ComponentInputButton>;
   heading: ComponentLayoutHeading;
   id: Scalars['ID'];
+  image: UploadFileEntityResponse;
 };
 
 export type ComponentContentText = {
@@ -208,14 +327,14 @@ export type ComponentHeroHeroButtonsButtonsArgs = {
 export type ComponentInputAddress = {
   __typename?: 'ComponentInputAddress';
   email?: Maybe<Scalars['String']>;
-  houseNumber: Scalars['String'];
+  houseNumber?: Maybe<Scalars['String']>;
   houseNumberAddition?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   phone?: Maybe<Scalars['String']>;
   phoneHref?: Maybe<Scalars['String']>;
-  place: Scalars['String'];
-  postalCode: Scalars['String'];
-  street: Scalars['String'];
+  place?: Maybe<Scalars['String']>;
+  postalCode?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
   title: Scalars['String'];
 };
 
@@ -445,6 +564,29 @@ export type ComponentSharedSeoInput = {
   structuredData?: InputMaybe<Scalars['JSON']>;
 };
 
+export type ComponentSharedTeaser = {
+  __typename?: 'ComponentSharedTeaser';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image: UploadFileEntityResponse;
+  title: Scalars['String'];
+};
+
+export type ComponentSharedTeaserFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedTeaserFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedTeaserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedTeaserFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedTeaserInput = {
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  image?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentTeaserTeaser = {
   __typename?: 'ComponentTeaserTeaser';
   id: Scalars['ID'];
@@ -480,6 +622,7 @@ export type ContactPage = {
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<ContactPageRelationResponseCollection>;
   seo?: Maybe<ComponentSharedSeo>;
+  teaser?: Maybe<ComponentSharedTeaser>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -495,7 +638,7 @@ export type ContactPageEntityResponse = {
   data?: Maybe<ContactPageEntity>;
 };
 
-export type ContactPageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentImage | ComponentContentImageText | ComponentContentText | ComponentContentVideo | Error;
+export type ContactPageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | Error;
 
 export type ContactPageHeroDynamicZone = ComponentHeroHeroButtons | Error;
 
@@ -503,6 +646,7 @@ export type ContactPageInput = {
   flexContent?: InputMaybe<Array<Scalars['ContactPageFlexContentDynamicZoneInput']>>;
   hero?: InputMaybe<Array<Scalars['ContactPageHeroDynamicZoneInput']>>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
+  teaser?: InputMaybe<ComponentSharedTeaserInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -521,6 +665,7 @@ export type ContentPage = {
   publishedAt?: Maybe<Scalars['DateTime']>;
   seo?: Maybe<ComponentSharedSeo>;
   slug: Scalars['String'];
+  teaser?: Maybe<ComponentSharedTeaser>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -561,11 +706,12 @@ export type ContentPageFiltersInput = {
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
+  teaser?: InputMaybe<ComponentSharedTeaserFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type ContentPageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentImage | ComponentContentImageText | ComponentContentText | ComponentContentVideo | Error;
+export type ContentPageFlexContentDynamicZone = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | Error;
 
 export type ContentPageHeroDynamicZone = ComponentHeroHeroButtons | Error;
 
@@ -575,6 +721,7 @@ export type ContentPageInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
   slug?: InputMaybe<Scalars['String']>;
+  teaser?: InputMaybe<ComponentSharedTeaserInput>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -675,6 +822,7 @@ export type GeneralSetting = {
   __typename?: 'GeneralSetting';
   createdAt?: Maybe<Scalars['DateTime']>;
   footer?: Maybe<ComponentGeneralFooter>;
+  googleTagManager?: Maybe<Scalars['String']>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<GeneralSettingRelationResponseCollection>;
   redirects: Array<Maybe<ComponentInputRedirect>>;
@@ -701,6 +849,7 @@ export type GeneralSettingEntityResponse = {
 
 export type GeneralSettingInput = {
   footer?: InputMaybe<ComponentGeneralFooterInput>;
+  googleTagManager?: InputMaybe<Scalars['String']>;
   redirects?: InputMaybe<Array<InputMaybe<ComponentInputRedirectInput>>>;
 };
 
@@ -709,7 +858,7 @@ export type GeneralSettingRelationResponseCollection = {
   data: Array<GeneralSettingEntity>;
 };
 
-export type GenericMorph = ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | ComponentGeneralFooter | ComponentGeneralSocialMedia | ComponentHeroHero | ComponentHeroHeroButtons | ComponentInputAddress | ComponentInputButton | ComponentInputLink | ComponentInputLinks | ComponentInputRedirect | ComponentLayoutHeading | ComponentLayoutParagraph | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentTeaserTeaser | ComponentTeaserTeasers | ContactPage | ContentPage | GeneralSetting | Homepage | I18NLocale | NotFound | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ArticleOverviewPage | ArticlePage | ComponentContentAccordion | ComponentContentAccordionItem | ComponentContentImage | ComponentContentImageText | ComponentContentQuote | ComponentContentText | ComponentContentVideo | ComponentGeneralFooter | ComponentGeneralSocialMedia | ComponentHeroHero | ComponentHeroHeroButtons | ComponentInputAddress | ComponentInputButton | ComponentInputLink | ComponentInputLinks | ComponentInputRedirect | ComponentLayoutHeading | ComponentLayoutParagraph | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSharedTeaser | ComponentTeaserTeaser | ComponentTeaserTeasers | ContactPage | ContentPage | GeneralSetting | Homepage | I18NLocale | NotFound | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Homepage = {
   __typename?: 'Homepage';
@@ -719,6 +868,9 @@ export type Homepage = {
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<HomepageRelationResponseCollection>;
   seo?: Maybe<ComponentSharedSeo>;
+  teaser?: Maybe<ComponentSharedTeaser>;
+  test?: Maybe<Scalars['JSON']>;
+  testtt?: Maybe<ContentPageEntityResponse>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -742,6 +894,9 @@ export type HomepageInput = {
   flexContent?: InputMaybe<Array<Scalars['HomepageFlexContentDynamicZoneInput']>>;
   hero?: InputMaybe<Array<Scalars['HomepageHeroDynamicZoneInput']>>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
+  teaser?: InputMaybe<ComponentSharedTeaserInput>;
+  test?: InputMaybe<Scalars['JSON']>;
+  testtt?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -862,6 +1017,9 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createArticleOverviewPageLocalization?: Maybe<ArticleOverviewPageEntityResponse>;
+  createArticlePage?: Maybe<ArticlePageEntityResponse>;
+  createArticlePageLocalization?: Maybe<ArticlePageEntityResponse>;
   createContactPageLocalization?: Maybe<ContactPageEntityResponse>;
   createContentPage?: Maybe<ContentPageEntityResponse>;
   createContentPageLocalization?: Maybe<ContentPageEntityResponse>;
@@ -874,6 +1032,8 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteArticleOverviewPage?: Maybe<ArticleOverviewPageEntityResponse>;
+  deleteArticlePage?: Maybe<ArticlePageEntityResponse>;
   deleteContactPage?: Maybe<ContactPageEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
   deleteGeneralSetting?: Maybe<GeneralSettingEntityResponse>;
@@ -896,6 +1056,8 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateArticleOverviewPage?: Maybe<ArticleOverviewPageEntityResponse>;
+  updateArticlePage?: Maybe<ArticlePageEntityResponse>;
   updateContactPage?: Maybe<ContactPageEntityResponse>;
   updateContentPage?: Maybe<ContentPageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -916,6 +1078,26 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+
+export type MutationCreateArticleOverviewPageLocalizationArgs = {
+  data?: InputMaybe<ArticleOverviewPageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateArticlePageArgs = {
+  data: ArticlePageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateArticlePageLocalizationArgs = {
+  data?: InputMaybe<ArticlePageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -977,6 +1159,17 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteArticleOverviewPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteArticlePageArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -1063,6 +1256,19 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+
+export type MutationUpdateArticleOverviewPageArgs = {
+  data: ArticleOverviewPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateArticlePageArgs = {
+  data: ArticlePageInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -1159,12 +1365,7 @@ export type NavigationItem = {
   updated_by?: Maybe<Scalars['String']>;
 };
 
-export type NavigationItemRelated = {
-  __typename?: 'NavigationItemRelated';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
+export type NavigationItemRelated = ArticleOverviewPage | ArticlePage | ContactPage | ContentPage;
 
 export type NavigationItemRelatedData = {
   __typename?: 'NavigationItemRelatedData';
@@ -1239,6 +1440,9 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  articleOverviewPage?: Maybe<ArticleOverviewPageEntityResponse>;
+  articlePage?: Maybe<ArticlePageEntityResponse>;
+  articlePages?: Maybe<ArticlePageEntityResponseCollection>;
   contactPage?: Maybe<ContactPageEntityResponse>;
   contentPage?: Maybe<ContentPageEntityResponse>;
   contentPages?: Maybe<ContentPageEntityResponseCollection>;
@@ -1258,6 +1462,26 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryArticleOverviewPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryArticlePageArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryArticlePagesArgs = {
+  filters?: InputMaybe<ArticlePageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1787,17 +2011,25 @@ export type ComponentContentImageFragment = { __typename?: 'ComponentContentImag
 
 export type ComponentContentImageTextFragment = { __typename?: 'ComponentContentImageText', id: string, textLeft: boolean, background: boolean, paragraph: { __typename?: 'ComponentLayoutParagraph', id: string, text: string, heading: { __typename?: 'ComponentLayoutHeading', id: string, title: string, subtitle: string }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null }, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
 
-export type ComponentContentQuoteFragment = { __typename?: 'ComponentContentQuote', heading: { __typename?: 'ComponentLayoutHeading', id: string, title: string, subtitle: string } };
+export type ComponentContentQuoteFragment = { __typename?: 'ComponentContentQuote', heading: { __typename?: 'ComponentLayoutHeading', id: string, title: string, subtitle: string }, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
 
 export type ComponentContentTextFragment = { __typename?: 'ComponentContentText', id: string, narrow: boolean, background: boolean, paragraph: { __typename?: 'ComponentLayoutParagraph', id: string, text: string, heading: { __typename?: 'ComponentLayoutHeading', id: string, title: string, subtitle: string }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null } };
 
+export type ComponentGeneralFooterFragment = { __typename?: 'ComponentGeneralFooter', id: string, socials: Array<{ __typename?: 'ComponentGeneralSocialMedia', channel?: Enum_Componentgeneralsocialmedia_Channel | null } | null>, links?: Array<{ __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null } | null> | null, columns?: Array<{ __typename?: 'ComponentInputLinks', id: string, title: string, links: Array<{ __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null } | null> } | null> | null };
+
+export type ComponentInputAddressFragment = { __typename?: 'ComponentInputAddress', id: string, street?: string | null, houseNumber?: string | null, houseNumberAddition?: string | null, postalCode?: string | null, place?: string | null, email?: string | null, phone?: string | null, phoneHref?: string | null };
+
 export type ComponentInputButtonFragment = { __typename?: 'ComponentInputButton', id: string, label: string, href: string, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target };
+
+export type ComponentInputLinkFragment = { __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null };
+
+export type ComponentInputLinksFragment = { __typename?: 'ComponentInputLinks', id: string, title: string, links: Array<{ __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null } | null> };
 
 export type ComponentInputRedirectFragment = { __typename?: 'ComponentInputRedirect', id: string };
 
 export type ComponentLayoutParagraphFragment = { __typename?: 'ComponentLayoutParagraph', id: string, text: string, heading: { __typename?: 'ComponentLayoutHeading', id: string, title: string, subtitle: string }, button?: { __typename?: 'ComponentInputButton', id: string, label: string, href: string, variant: Enum_Componentinputbutton_Variant, target: Enum_Componentinputbutton_Target } | null };
 
-export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null };
+export type NavigationItemFragment = { __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ArticleOverviewPage' } | { __typename: 'ArticlePage', slug: string } | { __typename: 'ContactPage' } | { __typename: 'ContentPage', slug: string } | null } | null };
 
 export type NavigationQueryVariables = Exact<{
   id: Scalars['String'];
@@ -1805,11 +2037,13 @@ export type NavigationQueryVariables = Exact<{
 }>;
 
 
-export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'NavigationItemRelated' } | null } | null } | null> };
+export type NavigationQuery = { navigation: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, items?: Array<{ __typename?: 'NavigationItem', id: number, title: string, path?: string | null, type: string, externalPath?: string | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ArticleOverviewPage' } | { __typename: 'ArticlePage', slug: string } | { __typename: 'ContactPage' } | { __typename: 'ContentPage', slug: string } | null } | null } | null> | null, related?: { __typename?: 'NavigationItemRelatedData', attributes?: { __typename: 'ArticleOverviewPage' } | { __typename: 'ArticlePage', slug: string } | { __typename: 'ContactPage' } | { __typename: 'ContentPage', slug: string } | null } | null } | null> };
 
 export type PaginationFragment = { __typename?: 'Pagination', total: number, page: number, pageSize: number, pageCount: number };
 
 export type ComponentSharedSeoFragment = { __typename?: 'ComponentSharedSeo', id: string, metaTitle?: string | null, metaRobots?: string | null, metaDescription?: string | null, metaViewport?: string | null, canonicalURL?: string | null, keywords?: string | null, metaImage: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
+
+export type ComponentSharedTeaserFragment = { __typename?: 'ComponentSharedTeaser', id: string, title: string, description: string, image: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
 
 export type ComponentUploadFileFragment = { __typename?: 'UploadFile', alternativeText?: string | null, url: string, placeholder?: string | null, hash: string, mime: string, name: string, provider: string, size: number };
 
@@ -1818,7 +2052,7 @@ export type SingleTypeGeneralQueryVariables = Exact<{
 }>;
 
 
-export type SingleTypeGeneralQuery = { generalSetting?: { __typename?: 'GeneralSettingEntityResponse', data?: { __typename?: 'GeneralSettingEntity', id?: string | null, attributes?: { __typename?: 'GeneralSetting', redirects: Array<{ __typename?: 'ComponentInputRedirect', id: string } | null> } | null } | null } | null };
+export type SingleTypeGeneralQuery = { generalSetting?: { __typename?: 'GeneralSettingEntityResponse', data?: { __typename?: 'GeneralSettingEntity', id?: string | null, attributes?: { __typename?: 'GeneralSetting', googleTagManager?: string | null, redirects: Array<{ __typename?: 'ComponentInputRedirect', id: string } | null>, footer?: { __typename?: 'ComponentGeneralFooter', id: string, socials: Array<{ __typename?: 'ComponentGeneralSocialMedia', channel?: Enum_Componentgeneralsocialmedia_Channel | null } | null>, links?: Array<{ __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null } | null> | null, columns?: Array<{ __typename?: 'ComponentInputLinks', id: string, title: string, links: Array<{ __typename?: 'ComponentInputLink', id: string, label: string, href?: string | null, target?: Enum_Componentinputlink_Target | null } | null> } | null> | null } | null } | null } | null } | null };
 
 export type SingleTypeHomepageQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];

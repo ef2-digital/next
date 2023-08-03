@@ -1,4 +1,4 @@
-import ServerPage from 'app/ServerPage';
+import ServerPageSingleType from 'app/ServerPageSingleType';
 import { Metadata } from 'next';
 import { getSingleTypeSeoMetadata } from 'utils/graphql/seo';
 import { RootLayoutProps } from './layout';
@@ -10,7 +10,7 @@ export const generateMetadata = async ({ params: { locale } }: RootLayoutProps):
 };
 
 const Page = ({ params: { locale } }: { params: { locale: string } }) => {
-    return <ServerPage contentType={PAGE} locale={locale} />;
+    return <ServerPageSingleType contentType={PAGE} locale={locale} />;
 };
 
 export default Page;

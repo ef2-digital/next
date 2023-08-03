@@ -2,14 +2,12 @@ import { ComponentContentTeaserFragment } from 'graphql/types';
 import { Teaser, TeaserProps } from '@ef2/content-components-react';
 import StrapiButton from './StrapiButton';
 import { getHeadingProps } from 'utils/helpers';
+import { Component } from 'utils/graphql/types';
 
 export interface StrapiContentTeaserProps {
-    teaser?: TeaserProps;
-    fragment: ComponentContentTeaserFragment;
-    className?: string;
 }
 
-const StrapiContentTeaser = ({ teaser, className, fragment }: StrapiContentTeaserProps) => {
+const StrapiContentTeaser = ({ teaser, className, fragment }: Component<StrapiContentTeaserProps>) => {
     return (
         <Teaser
             className={className}

@@ -1,6 +1,6 @@
 'use client';
 
-import { notNull } from 'utils/helpers';
+import { notNull } from 'utils/graphql/helpers';
 import StrapiContentFlex from './StrapiContentFlex';
 import { ComponentEnum } from 'config';
 

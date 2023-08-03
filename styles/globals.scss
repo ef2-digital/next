@@ -10,10 +10,10 @@
     h1,
     h2,
     h3 {
-        @apply text-primary font-bold;
+        @apply text-primary font-semibold;
 
         b {
-            @apply text-secondary font-bold;
+            @apply text-primary font-bold;
         }
     }
 
