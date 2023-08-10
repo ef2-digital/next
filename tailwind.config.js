@@ -16,6 +16,14 @@ module.exports = {
             center: true,
             padding: '1rem'
         },
+        fontSize: {
+            'h1-desktop': ['3.5rem', 1.2],
+            'h1-mobile': ['2rem', 1.2],
+            'h2-desktop': ['2.5rem', 1.2],
+            'h2-mobile': ['2rem', 1.2],
+            'h3-desktop': ['1.5rem', 1.3],
+            'h3-mobile': ['1.25rem', 1.3],
+        },
         fontFamily: {
             inter: ['Inter', 'sans-serif']
         },

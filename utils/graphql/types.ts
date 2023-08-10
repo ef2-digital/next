@@ -8,6 +8,8 @@ export type ContentTypeQueryDataAttributes<T extends object = {}> = {
     attributes: T;
 };
 
+export type GraphqlError = { message: string; extensions: { code: string } };
+
 export type SingleTypeQuery<T extends object = {}> = {
     [key: string]: {
         data?: ContentTypeQueryDataAttributes<T>;

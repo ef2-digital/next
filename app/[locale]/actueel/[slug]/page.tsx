@@ -1,6 +1,4 @@
 import ServerPageCollectionType from 'app/ServerPageCollectionType';
-import { Metadata } from 'next';
-import { getSingleTypeSeoMetadata } from 'utils/graphql/seo';
 import { getCollectionTypePaths } from 'utils/graphql/page';
 import { RootLayoutProps } from 'app/[locale]/layout';
 

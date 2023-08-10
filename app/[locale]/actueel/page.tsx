@@ -11,7 +11,16 @@ export const generateMetadata = async ({ params: { locale } }: RootLayoutProps):
 };
 
 const Page = ({ params: { locale } }: RootLayoutProps) => {
-    return <ServerOverview contentType={PAGE} contentTypeCollection={PAGE_COLLECTION} locale={locale} slugPrefix="actueel" />;
+    return (
+        <ServerOverview
+            // Remove to hide filters:
+            contentTypeFilters={['filterTypes', 'filterLocations']}
+            contentType={PAGE}
+            contentTypeCollection={PAGE_COLLECTION}
+            locale={locale}
+            slugPrefix="actueel"
+        />
+    );
 };
 
 export default Page;

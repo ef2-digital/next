@@ -1,8 +1,9 @@
 import { DocumentNode, print } from 'graphql';
-import { GeneratedQuery } from './types';
+import { GeneratedQuery, GraphqlError } from './types';
 
 export const fetchGraphql = async <T extends object>(query: DocumentNode | string, tags: string[], variables?: object): Promise<T> => {
-    const body = typeof query === 'string' ? JSON.stringify({ query, variables }) : JSON.stringify({ query: print(query), variables });
+    const queryString = typeof query === 'string' ? query : print(query);
+    const body = JSON.stringify({ query: queryString, variables });
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/graphql`, {
         method: 'POST',
@@ -11,10 +12,10 @@ export const fetchGraphql = async <T extends object>(query: DocumentNode | strin
         body
     });
 
-    const data: { data: T; errors?: { message: 'string' }[] } = await response.json();
+    const data: { data: T; errors?: GraphqlError[] } = await response.json();
 
     if (data.errors) {
-        throw new Error(data.errors[0].message);
+        throw new Error(JSON.stringify({ errors: data.errors, query: queryString }));
     }
 
     return data.data;

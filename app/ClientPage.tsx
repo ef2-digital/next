@@ -17,7 +17,7 @@ const ClientPage = <T extends SingleTypePage = SingleTypePage>({ data, general, 
         return notFound();
     }
 
-    console.log({ data, general})
+    console.log({ data, general });
     return (
         <>
             <StrapiContentFlexComponents components={data.hero} />

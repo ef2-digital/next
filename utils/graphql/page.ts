@@ -41,8 +41,8 @@ const getFragments = (
         return node ? [...a, node] : a;
     }, []);
 
-    const defaultComponentsContent = defaultComponents.filter(([_, value]) => !value.hero).map(([key]) => key);
-    const defaultComponentsHero = defaultComponents.filter(([_, value]) => value.hero).map(([key]) => key);
+    const defaultComponentsContent = defaultComponents.filter(([_, value]) => Boolean(!value.hero)).map(([key]) => key);
+    const defaultComponentsHero = defaultComponents.filter(([_, value]) => Boolean(value.hero)).map(([key]) => key);
 
     const fragmentsContent = [...content, ...defaultComponentsContent].map((component) => `...${component}`);
     const fragmentsHero = [...hero, ...defaultComponentsHero].map((component) => `...${component}`);
@@ -56,20 +56,18 @@ const getFragments = (
 
 export const getTeasersQuery = ({
     contentType,
-    filter,
+    filters,
     attributes
 }: {
     contentType: string;
     attributes?: string[];
-    filter?: Maybe<string>;
+    filters?: Maybe<string>;
 }) => gql`
     ${PAGINATION}
     ${COMPONENT_SHARED_TEASER}
 
     query Teasers${capitalizeFirstLetter(contentType)}($locale: I18NLocaleCode, $pagination: PaginationArg, $sort: [String]) {
-        ${contentType}(locale: $locale, pagination: $pagination, sort: $sort${
-    filter ? `, filters: { filters: { id: { eq: "${filter}" } } }` : ''
-}) {
+        ${contentType}(locale: $locale, pagination: $pagination, sort: $sort${filters ? `, filters: { ${filters} }` : ''}) {
             data {
                 id
                 attributes {
@@ -219,14 +217,15 @@ export const getCollectionTypePaths = async ({ contentType, locale, variables }:
 export const getCollectionTeasers = async ({
     contentType,
     locale,
-    variables
-}: GeneratedQuery): Promise<{ teasers: StrapiTeaserProps[]; pagination?: PaginationFragment }> => {
+    variables,
+    filters
+}: GeneratedQuery & { filters?: string }): Promise<{ teasers: StrapiTeaserProps[]; pagination?: PaginationFragment }> => {
     const response = await getGeneratedQueryData<CollectionTypeTeasersQuery>({
         contentType,
         tags: ['CollectionTypePageQuery'],
         locale,
         variables,
-        generateQuery: getTeasersQuery
+        generateQuery: (data) => getTeasersQuery({ ...data, filters })
     });
 
     const data = response[contentType].data?.filter(notNull) ?? [];

@@ -6,14 +6,16 @@ import { FunctionComponent } from 'react';
 import { COMPONENT_CONTENT_IMAGE_TEXT } from 'graphql/components/contentImageText';
 import StrapiContentImageText from 'components/strapi/StrapiContentImageText';
 import { Enum_Componentinputbutton_Target, Enum_Componentinputbutton_Variant } from 'graphql/types';
-import { ButtonProps, Variants } from 'components/layout/Button';
+import { ButtonProps } from 'components/layout/Button';
 import { COMPONENT_CONTENT_IMAGE } from 'graphql/components/contentImage';
 import StrapiContentQuote from 'components/strapi/StrapiContentQuote';
 import { COMPONENT_CONTENT_QUOTE } from 'graphql/components/contentQuote';
+import StrapiHeroButtons from 'components/strapi/StrapiHeroButtons';
+import { COMPONENT_HERO_HERO_BUTTONS } from 'graphql/components/heroHeroButtons';
 
 /* ~ Internationalization (i18n) ~ */
-export const LOCALES = ['nl'];
-export const DEFAULT_LOCALE = 'nl';
+export const LOCALES = process.env.NEXT_PUBLIC_LOCALES!.split(',');
+export const DEFAULT_LOCALE = process.env.NEXT_PUBLIC_DEFAULT_LOCALE!;
 
 /* ~ Flex compontents ~ */
 export enum ComponentEnum {
@@ -22,7 +24,7 @@ export enum ComponentEnum {
     CONTENT_IMAGE_TEXT = 'ComponentContentImageText',
     CONTENT_IMAGE = 'ComponentContentImage',
     CONTENT_QUOTE = 'ComponentContentQuote',
-    HERO_HERO_QR = 'HeroHeroQr'
+    HERO_HERO_BUTTONS = 'ComponentHeroHeroButtons'
 }
 
 export interface ComponentOptions {
@@ -53,6 +55,10 @@ export const COMPONENT_MAP = new Map<ComponentEnum, ComponentOptions>([
     [
         ComponentEnum.CONTENT_QUOTE,
         { fragment: COMPONENT_CONTENT_QUOTE, component: (props) => <StrapiContentQuote {...props} />, default: true }
+    ],
+    [
+        ComponentEnum.HERO_HERO_BUTTONS,
+        { fragment: COMPONENT_HERO_HERO_BUTTONS, component: (props) => <StrapiHeroButtons {...props} />, default: true, hero: true }
     ]
 ]);
 

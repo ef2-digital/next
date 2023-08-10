@@ -9,3 +9,4 @@ export { default as ImageWrapper } from './ImageWrapper';
 export { default as Cookies } from './Cookies';
 export { default as GoogleTagManager } from './GoogleTagManager';
 export { default as Button } from './Button';
+export { default as Filter } from './Filter';

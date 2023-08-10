@@ -13,7 +13,7 @@ const DefaultMenu = ({ navigation }: DefaultMenuProps) => {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
-        <Navbar onMenuOpenChange={(open) => setOpen(open ?? false)}>
+        <Navbar maxWidth="2xl" onMenuOpenChange={(open) => setOpen(open ?? false)}>
             <NavbarContent>
                 {/* // TODO translation */}
                 <NavbarMenuToggle aria-label={open ? 'Close menu' : 'Open menu'} className="sm:hidden" />

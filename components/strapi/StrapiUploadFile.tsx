@@ -15,7 +15,7 @@ const StrapiUploadFile = ({ sizes, image, ...props }: StrapiUploadFileProps) => 
     return (
         <Image
             {...props}
-            className={classNamesTailwind('w-full h-full', props.className)}
+            className={classNamesTailwind('w-full h-full object-center object-cover', props.className)}
             src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}
             placeholder={image.placeholder ? 'blur' : undefined}
             blurDataURL={image.placeholder ?? undefined}

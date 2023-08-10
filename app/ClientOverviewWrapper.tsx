@@ -12,7 +12,8 @@ interface ClientOverviewWrapperProps {
 
 const ClientOverviewWrapper = ({ children, fallback, contentTypeCollection }: PropsWithChildren<ClientOverviewWrapperProps>) => {
     // Where '1' is the current page (caching):
-    return <SWRConfig value={{ fallback: { [unstable_serialize(['teasers', contentTypeCollection, 1])]: fallback } }}>{children}</SWRConfig>;
+    return <SWRConfig value={{ fallback: { [unstable_serialize(['teasers', contentTypeCollection, 1])]: {...fallback, teasers: []} } }}>{children}</SWRConfig>;
+    // return <SWRConfig value={{ fallback: { [unstable_serialize(['teasers', contentTypeCollection, 1])]: fallback } }}>{children}</SWRConfig>;
 };
 
 export default ClientOverviewWrapper;

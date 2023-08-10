@@ -8,3 +8,4 @@ export { default as StrapiContentImage } from './StrapiContentImage';
 export { default as StrapiInputLinks } from './StrapiInputLinks';
 export { default as StrapiTeaser } from './StrapiTeaser';
 export { default as StrapiPagination } from './StrapiPagination';
+export { default as StrapiHeroButtons } from './StrapiHeroButtons';
