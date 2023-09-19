@@ -1,30 +1,22 @@
 import { gql } from 'graphql-tag';
-import { COMPONENT_UPLOAD_FILE } from '../components/uploadFile';
+import { COMPONENT_GENERAL_FOOTER } from 'graphql/components/generalFooter';
+import { COMPONENT_INPUT_REDIRECT } from 'graphql/components/inputRedirect';
 
 export const SINGLE_TYPE_GENERAL = gql`
-    ${COMPONENT_UPLOAD_FILE}
+    ${COMPONENT_INPUT_REDIRECT}
+    ${COMPONENT_GENERAL_FOOTER}
 
     query SingleTypeGeneral($locale: I18NLocaleCode!) {
         generalSetting(locale: $locale) {
             data {
                 id
                 attributes {
-                    logo {
-                        data {
-                            id
-                            attributes {
-                                ...ComponentUploadFile
-                            }
-                        }
+                    redirects {
+                        ...ComponentInputRedirect
                     }
-                    companyName
-                    emailaddress
-                    phoneNumber
-                    address
-                    socials {
-                        id
-                        channel
-                        url
+                    googleTagManager
+                    footer {
+                        ...ComponentGeneralFooter
                     }
                 }
             }

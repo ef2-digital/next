@@ -1,5 +1,8 @@
-import { notNull } from 'utils/helpers';
+'use client';
+
+import { notNull } from 'utils/graphql/helpers';
 import StrapiContentFlex from './StrapiContentFlex';
+import { ComponentEnum } from 'config';
 
 interface StrapiContentFlexComponentsProps {
     components?: ((object & { __typename: string }) | null)[] | null;
@@ -12,8 +15,8 @@ const StrapiContentFlexComponents = ({ components }: StrapiContentFlexComponents
 
     return (
         <>
-            {components.filter(notNull).map((component) => (
-                <StrapiContentFlex typename={component.__typename} data={component} key={component.__typename} />
+            {components.filter(notNull).map((component, index) => (
+                <StrapiContentFlex typename={component.__typename as ComponentEnum} data={component} key={index} />
             ))}
         </>
     );

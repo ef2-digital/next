@@ -1,20 +1,15 @@
 import gql from 'graphql-tag';
-import { COMPONENT_CONTENT_BUTTON } from './contentButton';
-import { COMPONENT_CONTENT_HEADING } from './contentHeading';
+import { COMPONENT_LAYOUT_PARAGRAPH } from './layoutParagraph';
 
 export const COMPONENT_CONTENT_TEXT = gql`
-    ${COMPONENT_CONTENT_HEADING}
-    ${COMPONENT_CONTENT_BUTTON}
+    ${COMPONENT_LAYOUT_PARAGRAPH}
 
     fragment ComponentContentText on ComponentContentText {
         id
-        heading {
-            ...ComponentContentHeading
+        paragraph {
+            ...ComponentLayoutParagraph
         }
-        text
-        button {
-            ...ComponentInputButton
-        }
+        narrow
         background
     }
 `;

@@ -1,47 +1,48 @@
-import { Icon } from '@ef2/react';
+import { Link, LinkIcon } from '@nextui-org/react';
 import classNames from 'classnames';
-import Link, { LinkProps } from 'next/link';
+import { ExpandMoreIcon } from 'components/icon';
+import { Link as IntlLink } from 'next-intl';
+import { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
-import { forwardRef, PropsWithChildren } from 'react';
-import { NavigationItem } from '@ef2/content-components-react';
+import { forwardRef, PropsWithChildren, ReactNode, useMemo } from 'react';
+
+export interface NavigationItem {
+    id: number | string;
+    title: string;
+    path: string;
+    external: boolean;
+    bold?: boolean;
+    items?: NavigationItem[];
+}
+
 export interface NavigationLinkProps extends NavigationItem, Omit<LinkProps, 'href' | 'target' | 'rel'> {
     className?: string;
     activeClassName?: string;
     onClick?: () => void;
-    items?: NavigationLinkProps[];
+    children?: ReactNode | (({ active, items }: { active?: boolean; items?: boolean }) => ReactNode);
+    noLink?: boolean;
 }
 
 const NavigationLink = forwardRef<HTMLAnchorElement, PropsWithChildren<NavigationLinkProps>>(
-    ({ title, path, external, id, className, activeClassName, items, children, bold, ...props }, ref) => {
+    ({ title, noLink, path, external, id, className, activeClassName, items, children, bold, ...props }, ref) => {
         const pathname = usePathname();
-        const active = pathname === path;
-
-        if (!path && items && items.length > 0) {
-            return (
-                <span className={classNames(className, { [`${activeClassName}`]: active })}>
-                    <span className="inline-flex items-center">
-                        {title} <Icon className="ml-1 fill-current" name="expandMore" />
-                    </span>
-                    {children}
-                </span>
-            );
-        }
-
-        if (!path) {
-            return null;
-        }
+        const active = useMemo(() => pathname === path, [pathname]);
+        const hasItems = items && Boolean(items.length);
 
         return (
             <Link
+                as={noLink ? 'span' : (IntlLink as any)}
                 ref={ref}
                 {...props}
                 href={path}
                 className={classNames(className, { [`${activeClassName}`]: active })}
                 target={external ? '_blank' : '_self'}
                 rel={external ? 'noreferrer' : undefined}
+                showAnchorIcon={hasItems}
+                anchorIcon={<ExpandMoreIcon className="w-6 h-6" />}
             >
                 <span>{title}</span>
-                {children}
+                {typeof children === 'function' ? children({ active, items: hasItems }) : children}
             </Link>
         );
     }

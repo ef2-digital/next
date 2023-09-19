@@ -1,54 +1,49 @@
 import { HeadingProps, NavigationItem } from '@ef2/content-components-react';
-import { ComponentContentHeadingFragment, Maybe, NavigationItemFragment, NavigationQuery } from 'graphql/types';
-import { ElementType } from 'react';
+import { ButtonProps, Variants } from 'components/layout/Button';
+import { LinkProps } from 'components/layout/Link';
+import { ParagraphProps } from 'components/layout/Paragraph';
+import { TARGET_MAP, COLOR_MAP } from 'config';
+import {
+    ComponentContentHeadingFragment,
+    ComponentInputButtonFragment,
+    ComponentInputLinkFragment,
+    ComponentLayoutParagraphFragment,
+    Enum_Componentinputbutton_Target,
+    Maybe
+} from 'graphql/types';
 
-const getHeadingProps = (heading: ComponentContentHeadingFragment): HeadingProps => {
+export const getHeadingProps = (heading?: Maybe<ComponentContentHeadingFragment>): HeadingProps => {
     return {
-        titleHtml: heading.title,
-        titleAs: heading.titleTag as ElementType | null
+        titleHtml: heading?.title,
+        subtitle: heading?.subtitle
     };
 };
 
-const getNavigationItemPath = (path?: Maybe<string>) => path;
-
-const getNavigationItems = (navigation: Pick<NavigationQuery, 'navigation'>): NavigationItem[] => {
-    return navigation.navigation.filter(notNull).map((item) => getNavigationItem(item));
-};
-
-const getNavigationItem = (item: NavigationItemFragment & { items?: (NavigationItemFragment | null)[] | null }): NavigationItem => {
-    const external = item.type === 'EXTERNAL';
-    const path = getNavigationItemPath(item.path) || item.externalPath || '/';
-
+export const getParagraphProps = (paragraph: ComponentLayoutParagraphFragment): ParagraphProps => {
     return {
-        id: item.id,
-        title: item.title,
-        path: item.items && item.items.length > 0 ? undefined : path.startsWith('/') || external ? path : `/${path}`,
-        items: item.items?.filter(notNull).map((item) => getNavigationItem(item)),
-        external
+        heading: paragraph.heading && getHeadingProps(paragraph.heading),
+        prose: { html: paragraph.text },
+        button: paragraph.button && getButtonProps(paragraph.button)
     };
 };
 
-const getDataFromCollection = <T extends object>(
-    pages: { data: { attributes?: T | undefined | null }[] | null } | null | undefined
-): T | null | undefined => {
-    const collection = pages?.data?.filter(notNull);
-    return collection && Boolean(collection.length) ? collection[0].attributes : undefined;
+export const getButtonProps = (component: ComponentInputButtonFragment): ButtonProps => {
+    return {
+        children: component.label,
+        href: component.href,
+        target: TARGET_MAP.get(component.target),
+        color: COLOR_MAP.get(component.variant)
+    };
 };
 
-const capitalizeFirstLetter = (string: string) => {
+export const getLinkProps = (component: ComponentInputLinkFragment): LinkProps => {
+    return {
+        children: component.label,
+        href: component.href,
+        target: TARGET_MAP.get(component.target as unknown as Enum_Componentinputbutton_Target)
+    };
+};
+
+export const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-const notNull = <T extends object>(value: T | null | undefined): value is T => {
-    return value !== null && value !== undefined;
-};
-
-export {
-    notNull,
-    capitalizeFirstLetter,
-    getHeadingProps,
-    getNavigationItemPath,
-    getNavigationItems,
-    getNavigationItem,
-    getDataFromCollection
 };

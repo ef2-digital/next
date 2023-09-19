@@ -1,27 +1,22 @@
-import classNames from 'classnames';
-import { FunctionComponent } from 'react';
-import StrapiContentTeaserCollection, { StrapiContentTeaserCollectionProps } from './StrapiContentTeaserCollection';
-import StrapiContentText, { StrapiContentTextProps } from './StrapiContentText';
+'use client';
 
-const componentMap = new Map<string, FunctionComponent<any>>([
-    ['ComponentContentText', (props: StrapiContentTextProps) => <StrapiContentText {...props} />],
-    ['ComponentContentTeaserCollection', (props: StrapiContentTeaserCollectionProps) => <StrapiContentTeaserCollection {...props} />]
-]);
+import classNames from 'classnames';
+import { COMPONENT_MAP, COMPONENT_MARGIN, ComponentEnum } from 'config';
 
 interface StrapiContentFlexProps<T> {
     data?: T | null;
-    typename: string;
+    typename: ComponentEnum;
     className?: string;
 }
 
 const StrapiContentFlex = <T extends object>({ typename, data, className }: StrapiContentFlexProps<T>) => {
-    const Content = componentMap.get(typename);
+    const Content = COMPONENT_MAP.get(typename)?.component;
 
     if (!Content) {
         return null;
     }
 
-    return <Content fragment={data} className={classNames('mb-20 md:mb-28', className)} />;
+    return <Content fragment={data} className={classNames(COMPONENT_MARGIN, className)} />;
 };
 
 export default StrapiContentFlex;
